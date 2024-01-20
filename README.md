@@ -1,33 +1,72 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 快速開始
 
-## Getting Started
-
-First, run the development server:
-
+第一次啟動專案，請先安裝套件:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+啟動 development server
+```bash
+yarn dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+在瀏覽器上打開[http://localhost:3000](http://localhost:3000)。
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+若需要 build 專案，請執行:
+```bash
+yarn build
+```
 
-## Learn More
+實際執行 build 好的專案:
+```bash
+yarn start
+```
 
-To learn more about Next.js, take a look at the following resources:
+也請打開[http://localhost:3000](http://localhost:3000)。
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 技術選型
+- next.js
+- typescript
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 專案架構
+```
+.
+├── app/
+│   ├── page.tsx (首頁)
+│   ├── layout.tsx
+│   ├── auth/
+│   │   ├── signin (登入)
+│   │   └── signup (註冊)
+│   ├── all-rooms (客房旅宿)
+│   ├── room (房型詳細)
+│   ├── reserve (房型預約)
+│   └── member (會員)
+├── components/
+│   ├── Button
+│   ├── Fields
+│   ├── Form
+│   └── ...
+├── public/
+│   └── images
+├── helpers
+└── hooks
+```
+
+`app` folder 下放網站的 route，如 home page、登入註冊頁等，next 會根據資料夾結構處理 route，例如 ./app/auth/signin 在網站上就會是 `<domain>.com/auth/signin`
+`app` folder 內的 `page.tsx` 是 home page，layout 則是會套用到全部頁面的 base layout ，每一層的 route 都需要有 `page.tsx` 當作進入點，且可以使用 `layout.tsx` 來當作該 route 的模板。
+example: 
+```
+auth/
+└── signin/
+    ├── page.tsx
+    └── layout.tsx
+```
+更詳細的內容可以參閱 [next 官方說明](https://nextjs.org/docs/getting-started/project-structure)
+
+## 開發
+next.js v13.4 之後，引入 react 18 的 server component 概念，next.js 會預設所有 component 是 server component (可以操作後端/無法使用 hooks 等僅能使用在瀏覽器上的功能)，若要使用 client components (一般的 component) 需在檔案上方加註 `'use client'`。
+
+詳細可以參閱 [next 官方](https://nextjs.org/docs/app/building-your-application/rendering/server-components)
 
 ## Deploy on Vercel
 
