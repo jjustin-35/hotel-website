@@ -4,7 +4,7 @@ import { apiMethod } from "@/constants/types/api";
 const fetchApi = async (
   url: string,
   method: apiMethod,
-  data?: Record<string, string>,
+  data?: Record<string, any>,
   headers?: Record<string, string>
 ) => {
   const reqHeaders = {
