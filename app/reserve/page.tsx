@@ -1,5 +1,7 @@
+import { Container } from "react-bootstrap";
+
 const Reserve = () => {
-  return <></>;
+  return <Container></Container>;
 };
 
 export default Reserve;
