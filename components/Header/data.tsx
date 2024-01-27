@@ -1,4 +1,8 @@
-import { ImageType, ButtonType } from "@/constants/types/global";
+import type {
+  ImageType,
+  ButtonType,
+  HeaderVariant,
+} from "@/constants/types/global";
 
 type MenuType = {
   text: string;
@@ -11,10 +15,7 @@ type HeaderType = {
   button: ButtonType;
 };
 
-type DataType = {
-  anonymous: HeaderType;
-  user: HeaderType;
-};
+type DataType = Record<HeaderVariant, HeaderType>;
 
 const data: DataType = {
   anonymous: {

@@ -2,11 +2,7 @@ import { Container } from "react-bootstrap";
 import { BackGroundWrapper } from "@/constants/commonStyle";
 
 const Reserve = () => {
-  return (
-    <BackGroundWrapper>
-      <Container></Container>
-    </BackGroundWrapper>
-  );
+  return <></>;
 };
 
 export default Reserve;
