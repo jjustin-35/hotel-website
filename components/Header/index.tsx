@@ -2,19 +2,17 @@
 
 import { useState, useEffect } from "react";
 import { Container, Navbar, Nav, Button } from "react-bootstrap";
-import type { HeaderVariant } from "@/constants/types/global";
+import { useSelector } from "react-redux";
 import "./style.scss";
 import dataset from "./data";
+import { RootState } from "@/config/configureStore";
 
-const Header = ({
-  variant,
-  isScrollChange,
-}: {
-  variant: HeaderVariant;
-  isScrollChange?: boolean;
-}) => {
+const Header = ({ isScrollChange }: { isScrollChange?: boolean }) => {
+  const { user } = useSelector((state: RootState) => state.user);
   const [bgColor, setBgColor] = useState<"black" | "transparent">("black");
-  const data = dataset[variant];
+
+  const isAuth = !!user;
+  const data = isAuth ? dataset.user : dataset.guest;
 
   const handleScroll = () => {
     if (!isScrollChange) return;
@@ -51,7 +49,17 @@ const Header = ({
               </Nav.Link>
             </Nav.Item>
           ))}
-          <Button href={data.button.link} className="font-white d-flex align-items-center px-2rem">{data.button.text}</Button>
+          {isAuth && (
+            <Nav.Item>
+              <Nav.Link href="/member">{user.name}</Nav.Link>
+            </Nav.Item>
+          )}
+          <Button
+            href={data.button.link}
+            className="font-white d-flex align-items-center px-2rem"
+          >
+            {data.button.text}
+          </Button>
         </Nav>
       </Container>
     </Navbar>

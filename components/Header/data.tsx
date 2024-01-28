@@ -1,7 +1,6 @@
 import type {
   ImageType,
   ButtonType,
-  HeaderVariant,
 } from "@/constants/types/global";
 
 type MenuType = {
@@ -15,10 +14,12 @@ type HeaderType = {
   button: ButtonType;
 };
 
+type HeaderVariant = "guest" | "user";
+
 type DataType = Record<HeaderVariant, HeaderType>;
 
 const data: DataType = {
-  anonymous: {
+  guest: {
     brand: {
       src: "/images/common/hotel-logo.svg",
       alt: "img-hotel-logo",
