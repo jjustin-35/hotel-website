@@ -62,7 +62,7 @@ const Header = ({ isScrollChange }: { isScrollChange?: boolean }) => {
           <Bugger isOpen={isOpen} />
         </Navbar.Toggle>
         <Navbar.Collapse id="navbar-nav" className="justify-content-end">
-          <Nav className="gap-md-3 align-items-center justify-content-center nav-collapse-list">
+          <Nav className="gap-md-3 align-items-center align-items-md-stretch justify-content-center nav-collapse-list">
             {data.menu.map((item, idx) => (
               <Nav.Item key={idx}>
                 <Nav.Link href={item.link} className="font-white p-3">

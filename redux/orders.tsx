@@ -22,9 +22,10 @@ type SetOrdersDataType = {
   userInfo: UserInfoType;
 };
 
-type InitialStateType = {
+type InitialState = {
   orders: Record<string, any>[];
   orderDetail: Record<string, any>;
+  reserveOrder: Record<string, any>;
   errorMessage: string;
 };
 
@@ -109,16 +110,21 @@ export const deleteOrder = createAsyncThunk(
   }
 );
 
-const initialState: InitialStateType = {
+const initialState: InitialState = {
   orders: [],
   orderDetail: {},
+  reserveOrder: {},
   errorMessage: "",
 };
 
 const ordersSlice = createSlice({
   name: "orders",
   initialState,
-  reducers: {},
+  reducers: {
+    setReserveOrder: (state, action) => {
+      state.reserveOrder = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getOrders.fulfilled, (state, action) => {
       state.orders = action.payload;
@@ -158,3 +164,5 @@ const ordersSlice = createSlice({
 });
 
 export default ordersSlice.reducer;
+
+export const orderActions = ordersSlice.actions;
