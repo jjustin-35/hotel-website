@@ -1,3 +1,5 @@
+import { RoomType } from "./room";
+
 type UserInfoType = {
   address: {
     zipcode: number;
@@ -8,33 +10,10 @@ type UserInfoType = {
   email: string;
 };
 
-type ContentInfoType = {
-  title: string;
-  isProvide: boolean;
-};
-
-type RoomInfoType = {
-  name: string;
-  description: string;
-  imageUrl: string;
-  imageUrlList: string[];
-  areaInfo: string;
-  bedInfo: string;
-  maxPeople: number;
-  price: number;
-  status: number;
-  layoutInfo: ContentInfoType[];
-  facilityInfo: ContentInfoType[];
-  amenityInfo: ContentInfoType[];
-  _id: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
 export type OrderType = {
   userInfo: UserInfoType;
   _id: string;
-  roomId: RoomInfoType;
+  roomId: RoomType;
   checkInDate: string;
   checkOutDate: string;
   peopleNum: number;
@@ -43,3 +22,12 @@ export type OrderType = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type ReserveOrderType = {
+  roomId: string;
+  roomName: string;
+  checkInDate: string;
+  checkOutDate: string;
+  peopleNum: number;
+  userInfo: UserInfoType;
+}

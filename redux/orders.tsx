@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import type { OrderType, ReserveOrderType } from "@/constants/types/order";
 import fetchApi from "@/helpers/apiHelper";
 import { apiMethod } from "@/constants/types/api";
 import config from "@/config";
@@ -23,9 +24,9 @@ type SetOrdersDataType = {
 };
 
 type InitialState = {
-  orders: Record<string, any>[];
-  orderDetail: Record<string, any>;
-  reserveOrder: Record<string, any>;
+  orders: OrderType[];
+  orderDetail: OrderType;
+  reserveOrder: ReserveOrderType;
   errorMessage: string;
 };
 
@@ -112,8 +113,8 @@ export const deleteOrder = createAsyncThunk(
 
 const initialState: InitialState = {
   orders: [],
-  orderDetail: {},
-  reserveOrder: {},
+  orderDetail: null,
+  reserveOrder: null,
   errorMessage: "",
 };
 
