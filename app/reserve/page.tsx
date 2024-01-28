@@ -1,8 +1,11 @@
-import { Container } from "react-bootstrap";
-import { BackGroundWrapper } from "@/constants/commonStyle";
+import Header from "@/components/Header";
 
 const Reserve = () => {
-  return <></>;
+  return (
+    <main className="page page-bg-light">
+      <Header />
+    </main>
+  );
 };
 
 export default Reserve;

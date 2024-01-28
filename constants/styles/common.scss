@@ -6,3 +6,15 @@
 .box-shadow-0 {
   box-shadow: unset !important;
 }
+
+.page {
+  min-height: 100vh;
+
+  &.page-bg-light {
+    background-color: #F7F2EE;
+  }
+
+  &.page-bg-dark {
+    background-color: black;
+  }
+}
