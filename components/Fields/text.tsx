@@ -1,11 +1,12 @@
 import { Form } from "react-bootstrap";
 import { FieldType } from "@/constants/types/global";
 
-const TextField = ({ field }: { field: FieldType }) => {
+const TextField = (props: FieldType) => {
+  const { label } = props;
   return (
-    <Form.Group>
-      <Form.Label>{field.label}</Form.Label>
-      <Form.Control {...field} />
+    <Form.Group controlId={props.id}>
+      {label && <Form.Label>{label}</Form.Label>}
+      <Form.Control {...props} />
     </Form.Group>
   );
 };

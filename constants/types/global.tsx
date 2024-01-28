@@ -11,5 +11,5 @@ export type ButtonType = {
 };
 
 export type FieldType = FormControlProps & {
-  label: string;
+  label?: string;
 };
