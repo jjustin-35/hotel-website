@@ -18,7 +18,6 @@ const ReserveInfo = ({ info }: { info: ReserveOrderType }) => {
             if (item.key === "room") return roomName;
             if (item.key === "date") return [checkInDate, checkOutDate];
             if (item.key === "peopleNum") return peopleNum;
-            return null;
           })();
           return <InfoItem key={item.key} {...item} info={info} />;
         })}

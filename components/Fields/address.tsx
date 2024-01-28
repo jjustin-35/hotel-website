@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Control, Controller } from "react-hook-form";
 import { Row, Col, Form } from "react-bootstrap";
 
 import type { FieldType } from "@/constants/types/global";
@@ -7,14 +8,20 @@ import addressData from "../../public/address.json";
 
 const address = addressData;
 
-const AddressFields = (props: FieldType) => {
+const AddressFields = ({
+  control,
+  field,
+}: {
+  control: Control;
+  field: FieldType;
+}) => {
   const [city, setCity] = useState(null);
 
   const defaultOption = "請選擇";
   const cities = Object.keys(address);
   const districts = city ? Object.keys(address[city]) : [];
 
-  const { label, ...restFieldOpts } = props;
+  const { label, ...restFieldOpts } = field;
 
   const handleCityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setCity(e.target.value);
@@ -24,27 +31,43 @@ const AddressFields = (props: FieldType) => {
       <p>{label}</p>
       <Row>
         <Form.Group as={Col} controlId="city">
-          <Form.Select defaultValue={defaultOption} onChange={handleCityChange}>
-            <option value={null}>{defaultOption}</option>
-            {cities.map((city) => (
-              <option key={city} value={city}>
-                {city}
-              </option>
-            ))}
-          </Form.Select>
+          <Controller
+            name="city"
+            control={control}
+            render={({ field }) => (
+              <Form.Select
+                {...field}
+                defaultValue={defaultOption}
+                onChange={handleCityChange}
+              >
+                <option value={null}>{defaultOption}</option>
+                {cities.map((city) => (
+                  <option key={city} value={city}>
+                    {city}
+                  </option>
+                ))}
+              </Form.Select>
+            )}
+          />
         </Form.Group>
         <Form.Group as={Col} controlId="district">
-          <Form.Select defaultValue={defaultOption}>
-            <option value={null}>{defaultOption}</option>
-            {districts.map((district) => (
-              <option key={district} value={district}>
-                {district}
-              </option>
-            ))}
-          </Form.Select>
+          <Controller
+            name="district"
+            control={control}
+            render={({ field }) => (
+              <Form.Select {...field} defaultValue={defaultOption}>
+                <option value={null}>{defaultOption}</option>
+                {districts.map((district) => (
+                  <option key={district} value={district}>
+                    {district}
+                  </option>
+                ))}
+              </Form.Select>
+            )}
+          />
         </Form.Group>
       </Row>
-      <TextField {...restFieldOpts} />
+      <TextField control={control} field={restFieldOpts} />
     </div>
   );
 };
