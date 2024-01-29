@@ -1,13 +1,27 @@
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import type { ReserveOrderType } from "@/constants/types/order";
+import { AppDispatch, RootState } from "@/config/configureStore";
+import { getRooms } from "@/redux/rooms";
 
 import InfoItem from "./item";
 
 import "./style.scss";
 import "../style.scss";
 import data from "./data";
+import { isArrayExist } from "@/helpers/other";
 
 const ReserveInfo = ({ info }: { info: ReserveOrderType }) => {
   const { roomName, checkInDate, checkOutDate, peopleNum } = info || {};
+  const { rooms } = useSelector((state: RootState) => state.rooms);
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    if (!isArrayExist(rooms)) {
+      dispatch(getRooms());
+    }
+  }, [rooms])
+
   return (
     <div>
       <h2 className="h3 reserve-section-title">{data.title}</h2>
@@ -24,6 +38,7 @@ const ReserveInfo = ({ info }: { info: ReserveOrderType }) => {
               name={item.key}
               title={item.title}
               subItems={item.subItems}
+              infoOptions={rooms}
               info={info}
             />
           );

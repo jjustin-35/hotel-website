@@ -14,3 +14,8 @@ export type FieldType = FormControlProps & {
   name: string;
   label?: string;
 };
+
+export type OptionType = {
+  value: string;
+  key: string;
+};

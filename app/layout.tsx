@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../constants/styles/global.scss";
 import "../constants/styles/common.scss";
+import "bootstrap-icons/font/bootstrap-icons.css"
 
 import ReduxProvider from "@/libs/reduxProvider";
 

@@ -79,3 +79,5 @@ const roomSlice = createSlice({
     });
   },
 });
+
+export default roomSlice.reducer;
