@@ -16,7 +16,9 @@ const TextField = ({
       <Controller
         name={field.name}
         control={control}
-        render={({ field }) => <Form.Control {...field} />}
+        render={({ field }) => (
+          <Form.Control {...field} style={{ minWidth: "250px" }} />
+        )}
       />
     </Form.Group>
   );

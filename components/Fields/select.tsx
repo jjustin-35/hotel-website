@@ -21,7 +21,7 @@ const Select = ({
         control={control}
         name={field.name}
         render={({ field }) => (
-          <Form.Select {...field}>
+          <Form.Select {...field} style={{minWidth: '250px'}}>
             <option value={null}>請選擇</option>
             {isArrayExist(options) &&
               options.map((option) => (
