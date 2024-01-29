@@ -15,11 +15,11 @@ const AddressFields = ({
   control: Control;
   field: FieldType;
 }) => {
-  const [city, setCity] = useState(null);
+  const [city, setCity] = useState<string>(null);
 
   const defaultOption = "請選擇";
   const cities = Object.keys(address);
-  const districts = city ? Object.keys(address[city]) : [];
+  const districts = city && address[city] ? Object.keys(address[city]) : [];
 
   const { label, ...restFieldOpts } = field;
 
@@ -28,7 +28,7 @@ const AddressFields = ({
   };
   return (
     <div className="d-flex flex-column gap-3">
-      <p>{label}</p>
+      <p className="mb-0">{label}</p>
       <Row>
         <Form.Group as={Col} controlId="city">
           <Controller

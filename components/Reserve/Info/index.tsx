@@ -23,7 +23,7 @@ const ReserveInfo = ({ info }: { info: ReserveOrderType }) => {
   }, [rooms])
 
   return (
-    <div>
+    <div className="reserve-section">
       <h2 className="h3 reserve-section-title">{data.title}</h2>
       <div className="d-flex flex-column gap-4">
         {data.items.map((item) => {

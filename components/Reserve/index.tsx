@@ -22,7 +22,7 @@ const Reserve = () => {
   return (
     <div className="reserve-page">
       <Container>
-        <h1 className="h2 d-flex align-items-center fw-bold reserve-page-title">
+        <h1 className="h2 d-flex align-items-center fw-bold">
           <Image
             src="/images/icon/ic-arrow-left.svg"
             alt="ic-arrow-left"
@@ -36,9 +36,7 @@ const Reserve = () => {
         <Row>
           <Col md={7}>
             <Info info={reserveOrder} />
-            <hr className="my-5 reserve-section-divider" />
             <Form />
-            <hr className="my-5 reserve-section-divider" />
           </Col>
         </Row>
       </Container>
