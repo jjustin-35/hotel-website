@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import Info from "./Info";
+import Form from "./Form";
 import { RootState } from "@/config/configureStore";
 import { Col, Container, Row } from "react-bootstrap";
 
@@ -35,6 +36,9 @@ const Reserve = () => {
         <Row>
           <Col md={7}>
             <Info info={reserveOrder} />
+            <hr className="my-5 reserve-section-divider" />
+            <Form />
+            <hr className="my-5 reserve-section-divider" />
           </Col>
         </Row>
       </Container>

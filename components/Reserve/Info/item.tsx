@@ -77,7 +77,7 @@ const InfoItem = ({ title, subItems, name, info, infoOptions }: InfoItemProps) =
   return (
     <div className="d-flex justify-content-between align-items-end">
       <div className="d-flex gap-2 flex-column">
-        <p className="fw-bold reserve-info-item-title">{title}</p>
+        <p className="fw-bold reserve-info-item-title mb-0">{title}</p>
         {isEdit ? (
           <Edit type={type} name={name} control={control} />
         ) : (
