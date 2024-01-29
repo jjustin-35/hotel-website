@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Control, useForm } from "react-hook-form";
 import TextField from "@/components/Fields/text";
 import "./style.scss";
+import { isArrayExist } from "@/helpers/other";
 
 interface InfoItemProps {
   title: string;
@@ -9,7 +10,7 @@ interface InfoItemProps {
     title: string;
     key: string;
   }[];
-  key: string;
+  name: string;
   info: string | number | string[];
 }
 
@@ -45,24 +46,27 @@ const Content = ({
   );
 };
 
-const InfoItem = ({ title, subItems, key, info }: InfoItemProps) => {
-  const [isEdit, setIsEdit] = useState(false);
+const InfoItem = ({ title, subItems, name, info }: InfoItemProps) => {
+  const [isEdit, setIsEdit] = useState<boolean>(!info || !isArrayExist(info as string[]));
   const { control } = useForm({
     defaultValues: {
-        [key]: "",
-    }
+      [name]: "",
+    },
   });
   return (
-    <div className="d-flex justify-content-between align-items-center">
+    <div className="d-flex justify-content-between align-items-end">
       <div className="d-flex gap-2 flex-column">
         <p className="fw-bold reserve-info-item-title">{title}</p>
         {isEdit ? (
-          <Edit type="text" name={key} control={control} />
+          <Edit type="text" name={name} control={control} />
         ) : (
           <Content subItems={subItems} info={info} />
         )}
       </div>
-      <a onClick={() => setIsEdit((prev) => !prev)}>
+      <a
+        onClick={() => setIsEdit((prev) => !prev)}
+        className="link-dark cursor-pointer text-decoration-underline"
+      >
         {isEdit ? "完成" : "編輯"}
       </a>
     </div>

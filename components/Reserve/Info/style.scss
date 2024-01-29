@@ -2,7 +2,7 @@
   padding-left: 16px;
   position: relative;
 
-  ::before {
+  &::before {
     content: "";
     position: absolute;
     width: 4px;
