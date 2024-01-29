@@ -1,0 +1,33 @@
+.check-list {
+  padding: 24px;
+  background-color: white;
+  border-radius: 8px;
+  display: flex;
+  gap: 40px;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+.check-list-row-multiple {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    gap: 40px;
+  }
+}
+
+.check-list-row-single {
+  display: flex;
+  gap: 24px;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    gap: 40px;
+  }
+}
