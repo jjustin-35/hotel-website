@@ -3,7 +3,7 @@ const data = {
   items: [
     {
       title: "選擇房型",
-      key: "room",
+      key: "roomName",
     },
     {
       title: "訂房日期",

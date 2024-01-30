@@ -139,7 +139,7 @@ const ordersSlice = createSlice({
   name: "orders",
   initialState,
   reducers: {
-    setReserveOrder: (state, action) => {
+    setReserveOrder: (state, action: {type: string; payload: ReserveOrderType}) => {
       state.reserveOrder = action.payload;
     },
   },

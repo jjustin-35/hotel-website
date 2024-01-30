@@ -16,6 +16,7 @@ interface InfoItemProps {
   name: string;
   info: string | number | string[];
   infoOptions?: RoomType[];
+  onEdit: (data: Record<string, any>) => void;
 }
 
 const Edit = ({
@@ -61,7 +62,7 @@ const Content = ({
   );
 };
 
-const InfoItem = ({ title, subItems, name, info, infoOptions }: InfoItemProps) => {
+const InfoItem = ({ title, subItems, name, info, infoOptions, onEdit }: InfoItemProps) => {
   const [isEdit, setIsEdit] = useState<boolean>(!info || !isArrayExist(info as string[]));
   const { control } = useForm({
     defaultValues: {
@@ -69,23 +70,35 @@ const InfoItem = ({ title, subItems, name, info, infoOptions }: InfoItemProps) =
     },
   });
 
+  const options: OptionType[] = infoOptions?.map((item) => ({
+    key: item._id,
+    value: item.name,
+  }));
+
   const type = (() => {
-    if (name === 'room') return "select";
+    if (name === 'roomName') return "select";
     if (name === 'peopleNum') return "number";
     return "text";
   })();
+
+  const onClick = () => {
+    if (isEdit) {
+      onEdit({ [name]: control._formValues[name] });
+    }
+    setIsEdit((prev) => !prev);
+  }
   return (
     <div className="d-flex justify-content-between align-items-end">
       <div className="d-flex gap-2 flex-column">
         <p className="fw-bold reserve-item-title mb-0">{title}</p>
         {isEdit ? (
-          <Edit type={type} name={name} control={control} />
+          <Edit type={type} name={name} control={control} options={options} />
         ) : (
           <Content subItems={subItems} info={info} />
         )}
       </div>
       <a
-        onClick={() => setIsEdit((prev) => !prev)}
+        onClick={onClick}
         className="link-dark cursor-pointer text-decoration-underline"
       >
         {isEdit ? "完成" : "編輯"}

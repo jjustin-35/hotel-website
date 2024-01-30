@@ -11,6 +11,7 @@ import RoomInfo from "./RoomInfo";
 import ReserveCard from "./Card";
 import { getRoomDetail } from "@/redux/rooms";
 import { AppDispatch, RootState } from "@/config/configureStore";
+import { orderActions } from "@/redux/orders";
 
 const Reserve = () => {
   const { reserveOrder } = useSelector((state: RootState) => state.orders);
@@ -23,6 +24,14 @@ const Reserve = () => {
       dispatch(getRoomDetail(reserveOrder.roomId));
     }
   }, [reserveOrder?.roomId, roomDetail]);
+
+  const onEdit = (data: Record<string, any>) => {
+    const payload = {
+      ...reserveOrder,
+      ...data,
+    };
+    dispatch(orderActions.setReserveOrder(payload));
+  };
 
   const onBack = () => {
     if (reserveOrder.roomId) {
@@ -47,7 +56,7 @@ const Reserve = () => {
         </h1>
         <Row className="justify-content-md-between">
           <Col md={7}>
-            <Info info={reserveOrder} />
+            <Info info={reserveOrder} onEdit={onEdit} />
             <Form />
             <RoomInfo roomData={roomDetail} />
           </Col>
