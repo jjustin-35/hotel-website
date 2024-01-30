@@ -1,11 +1,11 @@
-import { Container, Navbar, Nav, Button } from "react-bootstrap";
+import Link from 'next/link'
 function Header() {
     return (
     
         <nav className="navbar navbar-expand-lg bg-black py-4 px-lg-8" style={{padding:'0 12px'}}>
-          <a className="navbar-brand py-0" href='#'>
+          <Link className="navbar-brand py-0" href='/'>
             <img src='/images/桌機版/logo.png' style={{ width: '192px', height: '72px' }} alt="" />
-          </a>
+          </Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
             <i className="bi bi-list" style={{ color: 'white', fontSize: '24px' }}></i>
           </button>
@@ -21,7 +21,7 @@ function Header() {
                 <a className="nav-link py-0 active text-white " aria-current="page" href="#">客房旅館</a>
               </li>
               <li className="nav-item rounded">
-                <a href='/auth/login' className="nav-link py-0 text-white">會員登入</a>
+                <Link href='../auth/Login.tsx' className="nav-link py-0 text-white">會員登入</Link>
               </li>
               <li className="nav-item rounded">
                 <a className="nav-link py-0 text-white" href="#">立即訂房</a>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 //import 'bootstrap/dist/css/bootstrap.min.css';
-import './style/all.scss'
+import '../style/all.scss'
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 
