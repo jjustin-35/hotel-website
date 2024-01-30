@@ -1,11 +1,9 @@
-import { Container } from "react-bootstrap";
-
 import { RoomType } from "@/constants/types/room";
 import { getInfoTexts } from "@/helpers/getInfoTexts";
 import IconCards from "@/components/IconCards";
 import CheckList from "@/components/CheckList";
 import data from "./data";
-
+import "../style.scss";
 
 const RoomInfo = ({ roomData }: { roomData: RoomType }) => {
   if (!roomData) return null;
@@ -14,7 +12,7 @@ const RoomInfo = ({ roomData }: { roomData: RoomType }) => {
 
   const basic = data.basicInfo.items.map((item) => {
     const itemText = roomData[item.key] as string;
-    const text = item.key === 'maxPeople' ?  `${itemText} 人` : itemText;
+    const text = item.key === "maxPeople" ? `${itemText} 人` : itemText;
     return {
       ...item,
       text,
@@ -25,7 +23,7 @@ const RoomInfo = ({ roomData }: { roomData: RoomType }) => {
   const facility = getInfoTexts(facilityInfo);
   const amenity = getInfoTexts(amenityInfo);
   return (
-    <Container>
+    <div className="reserve-section">
       <h2 className="h3 reserve-section-title">{data.title}</h2>
       <div className="d-flex flex-column gap-4">
         <p className="fw-bold reserve-item-title mb-0">
@@ -45,7 +43,7 @@ const RoomInfo = ({ roomData }: { roomData: RoomType }) => {
         </p>
         <CheckList data={amenity} />
       </div>
-    </Container>
+    </div>
   );
 };
 
