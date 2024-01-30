@@ -1,4 +1,7 @@
+import Image from "next/image";
+
 import { ImageType } from "@/constants/types/global";
+import './style.scss';
 
 interface CardProps {
   icon: ImageType;
@@ -7,8 +10,8 @@ interface CardProps {
 
 const Card = ({ icon, text }: CardProps) => {
   return (
-    <div className="d-flex flex-column gap-2 bg-white rounded-2">
-      <img src={icon.src} alt={icon.alt} />
+    <div className="d-flex flex-column gap-2 bg-white rounded-2 icon-card">
+      <Image src={icon.src} alt={icon.alt} width={24} height={24} />
       <p className="mb-0">{text}</p>
     </div>
   );

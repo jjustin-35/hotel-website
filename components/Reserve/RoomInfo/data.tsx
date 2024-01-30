@@ -26,21 +26,21 @@ const data: DataType = {
       {
         key: "areaInfo",
         icon: {
-          src: "/images/icons/ic_Size.svg",
+          src: "/images/icon/ic_Size.svg",
           alt: "area",
         },
       },
       {
         key: "bedInfo",
         icon: {
-          src: "/images/icons/ic_Bed.svg",
+          src: "/images/icon/ic_Bed.svg",
           alt: "bed",
         },
       },
       {
         key: "maxPeople",
         icon: {
-          src: "/images/icons/ic_People.svg",
+          src: "/images/icon/ic_Person.svg",
           alt: "people",
         },
       },

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Control, useForm } from "react-hook-form";
+import { Control, set, useForm } from "react-hook-form";
 import { OptionType } from "@/constants/types/global";
 import { RoomType } from "@/constants/types/room";
 import { isArrayExist } from "@/helpers/other";
@@ -32,11 +32,7 @@ const Edit = ({
 }) => {
   if (type === "select") {
     return (
-      <Select
-        control={control}
-        field={{ name, type }}
-        options={options}
-      />
+      <Select control={control} field={{ name, type }} options={options} />
     );
   }
   return <TextField control={control} field={{ name, type }} />;
@@ -62,8 +58,17 @@ const Content = ({
   );
 };
 
-const InfoItem = ({ title, subItems, name, info, infoOptions, onEdit }: InfoItemProps) => {
-  const [isEdit, setIsEdit] = useState<boolean>(!info || !isArrayExist(info as string[]));
+const InfoItem = ({
+  title,
+  subItems,
+  name,
+  info,
+  infoOptions,
+  onEdit,
+}: InfoItemProps) => {
+  const [isEdit, setIsEdit] = useState<boolean>(
+    !info || !isArrayExist(info as string[])
+  );
   const { control } = useForm({
     defaultValues: {
       [name]: "",
@@ -76,17 +81,27 @@ const InfoItem = ({ title, subItems, name, info, infoOptions, onEdit }: InfoItem
   }));
 
   const type = (() => {
-    if (name === 'roomName') return "select";
-    if (name === 'peopleNum') return "number";
+    if (name === "roomName") return "select";
+    if (name === "peopleNum") return "number";
     return "text";
   })();
 
   const onClick = () => {
-    if (isEdit) {
-      onEdit({ [name]: control._formValues[name] });
+    if (!isEdit) return setIsEdit(true);
+
+    if (name === "roomName") {
+      const room = infoOptions?.find(
+        (item) => item._id === control._formValues[name]
+      );
+      onEdit({ [name]: room?.name, roomId: room?._id });
+      setIsEdit(false);
+      return;
     }
-    setIsEdit((prev) => !prev);
-  }
+
+    onEdit({ [name]: control._formValues[name] });
+    setIsEdit(false);
+    return;
+  };
   return (
     <div className="d-flex justify-content-between align-items-end">
       <div className="d-flex gap-2 flex-column">

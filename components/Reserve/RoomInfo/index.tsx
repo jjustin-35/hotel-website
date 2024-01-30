@@ -15,7 +15,8 @@ const RoomInfo = ({ roomData }: { roomData: RoomType }) => {
   const { layoutInfo, facilityInfo, amenityInfo } = roomData;
 
   const basic = data.basicInfo.items.map((item) => {
-    const text = roomData[item.key] as string;
+    const itemText = roomData[item.key] as string;
+    const text = item.key === 'maxPeople' ?  `${itemText} 人` : itemText;
     return {
       ...item,
       text,
