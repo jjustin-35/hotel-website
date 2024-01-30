@@ -26,21 +26,21 @@ const data: DataType = {
       {
         key: "areaInfo",
         icon: {
-          src: "/icons/area.svg",
+          src: "/images/icons/ic_Size.svg",
           alt: "area",
         },
       },
       {
         key: "bedInfo",
         icon: {
-          src: "/icons/bed.svg",
+          src: "/images/icons/ic_Bed.svg",
           alt: "bed",
         },
       },
       {
         key: "maxPeople",
         icon: {
-          src: "/icons/people.svg",
+          src: "/images/icons/ic_People.svg",
           alt: "people",
         },
       },
@@ -62,3 +62,5 @@ const data: DataType = {
     key: "amenityInfo",
   },
 };
+
+export default data;

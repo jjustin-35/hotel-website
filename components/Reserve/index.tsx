@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useSelector } from "react-redux";
 import Info from "./Info";
 import Form from "./Form";
+import RoomInfo from "./RoomInfo";
 import { RootState } from "@/config/configureStore";
 import { Col, Container, Row } from "react-bootstrap";
 
@@ -37,6 +38,7 @@ const Reserve = () => {
           <Col md={7}>
             <Info info={reserveOrder} />
             <Form />
+            <RoomInfo roomId={reserveOrder?.roomId} />
           </Col>
         </Row>
       </Container>
