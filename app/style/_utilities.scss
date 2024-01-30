@@ -1,0 +1,306 @@
+
+
+//News
+.news{
+    .title{
+        font-size: 32px;
+        @media (min-width: 992px) {
+            font-size: 48px;
+        }
+    }
+    .card-img{
+        height: 294px;
+        width: 100%;
+        @media (min-width: 992px) {
+            
+            width: 474px;
+        }
+    }
+    .card-title{
+        font-size: 28px;
+        @media (min-width: 992px) {
+            font-size: 32px;
+        }
+    }
+    .card-text{
+        font-size: 14px;
+        @media (min-width: 992px) {
+            font-size: 16px;
+        }
+    }
+}
+
+//About
+.about{
+    .dot{
+        width: 100px;
+        height: 100px;
+        left: 24px;
+        top:-40px;
+        @media (min-width:1800px){
+            width: 200px;
+            height: 200px;
+            left: 80px;
+            top:-120px;
+        }
+    }
+    .banner{
+        background-image: url('/images/桌機版/about.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        height: 594px;
+        @media (min-width:992px) {
+            height: 672px;
+        }
+        .bannerText{
+            border-width: 0 0 1px 1px;
+            border-style: solid;
+            border-color: #FFFFFF;
+            border-radius: 40px 40px 0 40px;
+            backdrop-filter: blur(5px);
+            background-image: linear-gradient(to bottom,#140F0ACC,#BE9C7CCC);
+            @media (min-width: 992px) {
+                border-radius: 80px 80px 0 80px;
+                width: 1044px;
+                //float: right;
+            } 
+
+            .title{
+                font-size: 32px;
+                @media (min-width: 992px) {
+                    font-size: 48px;
+                } 
+            }
+        }
+        ul{
+            list-style: none;
+            li{
+                p{
+                    font-size: 14px;
+                    @media (min-width: 992px) {
+                        font-size: 16px;
+                    } 
+                }
+            }
+        }
+    }
+}
+
+//Room
+.room{
+    background-image: url('/images/桌機版/bg.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-y:65%;
+    @media (min-width: 992px) {
+        background-position-y:bottom
+    }
+    .swiper-button-next,.swiper-button-prev{
+        color: $primary;
+    }
+    position: relative;
+    overflow-x: clip;
+    .waveLine{
+        position: absolute;
+        left: 80px;
+        top:-20px;
+        height: 82px;
+        
+        @media (min-width: 992px) {
+            right: 0;
+            top:180px;
+            height: 188px;  
+        }
+    }
+    .room-image{
+        border-radius: 0 8px 8px 0;
+        width: 350px;
+        height: 300px;
+        @media (min-width:992px) {
+            width: 900px;
+            height: 900px;
+        }
+    }
+    .title{
+        font-size: 28px;
+        @media (min-width: 992px) {
+            font-size: 32px;
+        }
+    }
+    .desc{
+        font-size: 14px;
+        @media (min-width: 992px) {
+            font-size: 16px;
+        }
+    }
+    .price{
+        font-size: 32px;
+        @media (min-width: 992px) {
+            font-size: 24px;
+        }
+    }
+    .btn-more{
+        padding: 20px 116px 20px;
+        background: #FFFFFF;
+        color:black;
+        position: relative;
+        &::after{
+            position: absolute;
+            content: '';
+            top: 50%;
+            right: 20px;
+            width: 80px;
+            height: 1px;
+            background-color: black;
+        }
+        @media (min-width: 992px) {
+            padding: 30px 116px 30px;
+            font-size: 24px;
+            &::after{
+                right: 30px;
+            }
+        }
+        @media (min-width: 1800px){
+            padding: 40px 206px 40px;
+            &::after{
+                right: 40px;
+                width: 150px;
+            }
+        }
+        &:hover{
+            background:$primary !important;
+            color:white;
+            &::after{
+                background-color: white;
+            }
+        }
+    }
+}
+
+//Food
+.food{
+    // background-image: url('../assets/images/桌機版/line.png');
+    // background-repeat: no-repeat;
+    // background-size: contain;
+    // background-position-y: 55px;
+    .waveLine{
+        display: none;
+        width: 187px;
+        top:55px;
+        left:40px;
+        @media (min-width:1800px){
+            display: flex;
+        }
+        
+    }
+    .dot{
+        display: none;
+        width: 200px;
+        height: 200px;
+        right: 80px;
+        top:-40px;
+        @media (min-width:1800px){
+            display: flex;
+        }
+    }
+    .title{
+        min-width: 66px;
+        font-size: 32px;
+        @media (min-width: 992px) {
+            min-width: 99px;
+            font-size: 48px;
+        }
+    }
+    .card{
+        border-radius: 8px;
+        .card-body{
+            backdrop-filter: blur(5px);
+            .card-title{
+                font-size: 24px;
+            }
+            .time{
+                font-size: 14px;
+            }
+            .card-text{
+                font-size: 14px;
+                @media (min-width:992px){
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+    
+}
+
+//Transportation
+.transportation{
+    .title{
+        min-width: 66px;
+        font-size: 32px;
+        @media (min-width: 992px) {
+            min-width: 99px;
+            font-size: 48px;
+        }
+    }
+    .card{
+        .icon-transportation{
+            font-size: 48px;
+            @media(min-width: 992px){
+                font-size: 80px;
+            }
+        }
+        .card-title{
+            font-size: 16px;
+            @media(min-width: 992px){
+                font-size: 24px;
+            }
+        }
+        .card-text{
+            font-size: 14px;
+            @media(min-width: 992px){
+                font-size: 16px;
+            }
+        }
+        
+    }
+    .waveLine{
+        height: 84px;
+        @media(min-width: 992px){
+            height: 188px;
+        } 
+    }
+}
+
+//Footer
+.footer{
+    .footer-logo{
+        width: 196px;
+    }
+    .social-media{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border: 1px solid white;
+        border-radius: 50%;
+        &:hover{
+            border-color: $primary;
+        }
+        i{
+            font-size: 24px;
+            color: white;
+            &:hover{
+                color: $primary;
+            }
+        }
+    }
+    a{
+        text-decoration: none;
+        color:white;
+        &:hover{
+            color:$primary;
+        }
+    }
+}
