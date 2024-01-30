@@ -1,13 +1,11 @@
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
 import { Container } from "react-bootstrap";
 
-import { AppDispatch, RootState } from "@/config/configureStore";
-import { getRoomDetail } from "@/redux/rooms";
+import { RoomType } from "@/constants/types/room";
+import { getInfoTexts } from "@/helpers/getInfoTexts";
 import IconCards from "@/components/IconCards";
 import CheckList from "@/components/CheckList";
 import data from "./data";
-import { RoomType } from "@/constants/types/room";
+
 
 const RoomInfo = ({ roomData }: { roomData: RoomType }) => {
   if (!roomData) return null;
@@ -23,26 +21,9 @@ const RoomInfo = ({ roomData }: { roomData: RoomType }) => {
     };
   });
 
-  const layout = layoutInfo.reduce<string[]>((acc, cur) => {
-    if (cur.isProvide) {
-      return [...acc, cur.title];
-    }
-    return acc;
-  }, []);
-
-  const facility = facilityInfo.reduce<string[]>((acc, cur) => {
-    if (cur.isProvide) {
-      return [...acc, cur.title];
-    }
-    return acc;
-  }, []);
-
-  const amenity = amenityInfo.reduce<string[]>((acc, cur) => {
-    if (cur.isProvide) {
-      return [...acc, cur.title];
-    }
-    return acc;
-  }, []);
+  const layout = getInfoTexts(layoutInfo);
+  const facility = getInfoTexts(facilityInfo);
+  const amenity = getInfoTexts(amenityInfo);
   return (
     <Container>
       <h2 className="h3 reserve-section-title">{data.title}</h2>
