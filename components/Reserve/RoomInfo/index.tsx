@@ -7,21 +7,15 @@ import { getRoomDetail } from "@/redux/rooms";
 import IconCards from "@/components/IconCards";
 import CheckList from "@/components/CheckList";
 import data from "./data";
+import { RoomType } from "@/constants/types/room";
 
-const RoomInfo = ({ roomId }: { roomId: string }) => {
-  const { roomDetail } = useSelector((state: RootState) => state.rooms);
-  const dispatch = useDispatch<AppDispatch>();
+const RoomInfo = ({ roomData }: { roomData: RoomType }) => {
+  if (!roomData) return null;
 
-  useEffect(() => {
-    dispatch(getRoomDetail(roomId));
-  }, [roomId]);
-
-  if (!roomId) return null;
-
-  const { layoutInfo, facilityInfo, amenityInfo } = roomDetail;
+  const { layoutInfo, facilityInfo, amenityInfo } = roomData;
 
   const basic = data.basicInfo.items.map((item) => {
-    const text = roomDetail[item.key] as string;
+    const text = roomData[item.key] as string;
     return {
       ...item,
       text,

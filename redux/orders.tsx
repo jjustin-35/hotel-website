@@ -111,10 +111,27 @@ export const deleteOrder = createAsyncThunk(
   }
 );
 
+const demoReserveOrder: ReserveOrderType = {
+  roomName: "roomName",
+  roomId: "123",
+  checkInDate: "2021-10-10",
+  checkOutDate: "2021-10-11",
+  peopleNum: 2,
+  userInfo: {
+    address: {
+      zipcode: 123,
+      detail: "detail",
+    },
+    name: "name",
+    phone: "0987654321",
+    email: "email@test.com",
+  },
+};
+
 const initialState: InitialState = {
   orders: [],
   orderDetail: null,
-  reserveOrder: null,
+  reserveOrder: demoReserveOrder,
   errorMessage: "",
 };
 

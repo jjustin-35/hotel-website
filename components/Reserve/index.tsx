@@ -2,23 +2,34 @@
 
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { Col, Container, Row } from "react-bootstrap";
+import { useEffect } from "react";
 import Info from "./Info";
 import Form from "./Form";
 import RoomInfo from "./RoomInfo";
-import { RootState } from "@/config/configureStore";
-import { Col, Container, Row } from "react-bootstrap";
+import ReserveCard from "./Card";
+import { getRoomDetail } from "@/redux/rooms";
+import { AppDispatch, RootState } from "@/config/configureStore";
 
 const Reserve = () => {
   const { reserveOrder } = useSelector((state: RootState) => state.orders);
+  const { roomDetail } = useSelector((state: RootState) => state.rooms);
+  const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
+
+  useEffect(() => {
+    if (reserveOrder?.roomId && !roomDetail) {
+      dispatch(getRoomDetail(reserveOrder.roomId));
+    }
+  }, [reserveOrder?.roomId, roomDetail]);
 
   const onBack = () => {
     if (reserveOrder.roomId) {
       router.push(`/room/${reserveOrder.roomId}`);
       return;
     }
-    router.push('/all-rooms');
+    router.push("/all-rooms");
   };
   return (
     <div className="reserve-page">
@@ -34,11 +45,14 @@ const Reserve = () => {
           />
           確認訂房資訊
         </h1>
-        <Row>
+        <Row className="justify-content-md-between">
           <Col md={7}>
             <Info info={reserveOrder} />
             <Form />
-            <RoomInfo roomId={reserveOrder?.roomId} />
+            <RoomInfo roomData={roomDetail} />
+          </Col>
+          <Col md={4}>
+            <ReserveCard roomData={roomDetail} reserveData={reserveOrder} />
           </Col>
         </Row>
       </Container>
