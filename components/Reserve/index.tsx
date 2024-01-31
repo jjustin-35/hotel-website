@@ -55,12 +55,12 @@ const Reserve = () => {
           確認訂房資訊
         </h1>
         <Row className="justify-content-md-between">
-          <Col md={7}>
+          <Col lg={7}>
             <Info info={reserveOrder} onEdit={onEdit} />
             <Form />
             <RoomInfo roomData={roomDetail} />
           </Col>
-          <Col md={4}>
+          <Col lg={4}>
             <ReserveCard roomData={roomDetail} reserveData={reserveOrder} />
           </Col>
         </Row>

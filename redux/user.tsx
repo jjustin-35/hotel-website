@@ -4,6 +4,7 @@ import config from "@/config";
 import apiPaths from "@/constants/apis";
 import fetchApi from "@/helpers/apiHelper";
 import { apiMethod } from "@/constants/types/api";
+import { UserType } from "@/constants/types/user";
 
 export const getUser = createAsyncThunk(
   "user/getUser",
@@ -27,23 +28,6 @@ export const getUser = createAsyncThunk(
     return resp.result;
   }
 );
-
-type UserType = {
-  address: {
-    zipcode: number;
-    detail: string;
-    city: string;
-    county: string;
-  };
-  _id: string;
-  name: string;
-  email: string;
-  phone: string;
-  birthday: string;
-  createdAt: string;
-  updatedAt: string;
-  id: string;
-};
 
 type InitialState = {
   user?: UserType;

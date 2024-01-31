@@ -3,7 +3,7 @@ import Image from "next/image";
 const SuccMessage = ({ memberName }: { memberName: string }) => {
   return (
     <section className="reserve-section font-white d-flex flex-column gap-40">
-      <div className="d-flex gap-40 align-items-center">
+      <div className="d-flex gap-40 flex-column flex-md-row align-items-md-center">
         <Image
           src="/images/icon/ic_succ.svg"
           alt="ic-succ"

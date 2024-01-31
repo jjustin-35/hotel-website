@@ -128,6 +128,7 @@ const demoReserveOrder: ReserveOrderType = {
   },
 };
 
+
 const initialState: InitialState = {
   orders: [],
   orderDetail: null,
@@ -139,7 +140,10 @@ const ordersSlice = createSlice({
   name: "orders",
   initialState,
   reducers: {
-    setReserveOrder: (state, action: {type: string; payload: ReserveOrderType}) => {
+    setReserveOrder: (
+      state,
+      action: { type: string; payload: ReserveOrderType }
+    ) => {
       state.reserveOrder = action.payload;
     },
   },
