@@ -1,4 +1,119 @@
+.object-cover{
+    object-fit: cover;
+}
 
+//swiper
+.swiper-pagination-bullet{
+    border-radius: 0% !important;
+    width: 32px !important;
+    height: 4px !important;
+    background-color: white !important;
+}
+
+.swiper-pagination-bullet-active{
+    width: 60px !important;
+    background-color: $primary !important;
+}
+
+
+//banner
+.banner{
+    width: 291px;
+    @media (min-width: 992px) {
+        width: 772px;
+    }
+    .cover{
+        background-color: black;
+        opacity:.6;
+        position: absolute;
+        top:0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+    img{
+        height: 100vh;
+        @media (min-width: 992px) {
+            height: auto;
+        }
+    }
+    .bannerLogo{
+        @media (min-width: 992px) {
+            padding-right: 200px;
+        }
+    }
+    .banner-caption{
+        bottom: 8%;
+        right: 20px;
+        left: 60px;
+        @media (min-width: 992px) {
+            right: 60px;
+        }
+        .title{
+            @media (min-width: 992px) {
+                width: 50%;
+            }
+        }
+        .content{
+            @media (min-width: 992px) {
+                width: 50%;
+            }
+            .content-border{
+                border-width: 1px 1px 0 0;
+                border-style: solid;
+                border-color: white;
+                border-radius: 80px;
+                padding-top: 100px;
+                background: linear-gradient(to bottom, #FFFFFF00, #FFFFFF30);
+                backdrop-filter: blur(5px);
+                .content-text{
+                    margin-left: -38px;
+                    @media (min-width: 992px) {
+                        margin-left: -48px;
+                    }
+                    .title{
+                        font-size: 48px;
+                        @media (min-width: 992px) {
+                            font-size: 60px;
+                        }
+                        @media (min-width: 1200px) {
+                            font-size: 80px;
+                        }
+                        @media (min-width: 1400px) {
+                            font-size: 100px;
+                        }
+                    }
+                    .desc{
+                        font-size: 16px;
+                        margin-bottom: 40px;
+                        @media (min-width: 992px) {
+                            font-size: 32px;
+                            margin-bottom: 60px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    .bannerColumnLine{
+        border-width: 0 2px 0 0;
+        border-style: solid;
+        border-image: linear-gradient(to bottom, #BE9C7C,#FFFFFF) 1;
+        height: 83px;
+    }
+    .btn-booking{
+        padding: 20px;
+        @media (min-width: 992px) {
+            padding: 40px;
+        }
+        &:hover{
+            background:$primary !important;
+            color:white;
+        }
+    }
+    
+}
 
 //News
 .news{
