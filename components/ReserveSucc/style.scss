@@ -1,0 +1,24 @@
+.reserve-section {
+  padding: 80px 0;
+  border-bottom: 1px solid #909090;
+
+  &:first-child {
+    padding-top: 0;
+  }
+}
+
+.reserve-section-title {
+  margin-bottom: 40px;
+}
+
+.reserve-page {
+  padding: 40px 0;
+
+  @media screen and (min-width: 768px) {
+    padding: 80px 0;
+  }
+}
+
+.gap-40 {
+  gap: 40px;
+}
