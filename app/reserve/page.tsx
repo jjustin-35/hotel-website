@@ -4,7 +4,6 @@ import Reserve from "@/components/Reserve";
 const ReservePage = () => {
   return (
     <main className="page page-bg-light">
-      <Header />
       <Reserve />
     </main>
   );

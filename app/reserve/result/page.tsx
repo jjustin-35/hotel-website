@@ -1,4 +1,3 @@
-import Header from "@/components/Header";
 import ReserveSucc from "@/components/ReserveSucc";
 import fetchApi from "@/helpers/apiHelper";
 import { apiMethod } from "@/constants/types/api";
@@ -17,7 +16,6 @@ const ReserveSuccPage = async ({
   );
   return (
     <main className="page page-bg-dark overflow-hidden">
-      <Header />
       <ReserveSucc order={order} />
       <img src="/images/common/Line.svg" alt="img-line-bg" />
     </main>
