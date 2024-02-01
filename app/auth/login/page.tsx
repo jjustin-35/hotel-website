@@ -1,7 +1,11 @@
-function Login(){
+import { FC } from "react";
+import LoginLayout from "@/components/LoginLayout"
+import LoginForm from "@/components/LoginForm";
+const Login:FC = ()=>{
     return(
-            <p>login</p>
-    )
+       <LoginLayout>
+           <LoginForm/>
+       </LoginLayout>    )
 }
 
 export default Login
