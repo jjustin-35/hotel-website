@@ -1,0 +1,22 @@
+.tab {
+  position: relative;
+  color: white;
+  ::before {
+    content: "";
+    background-color: white;
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 4px;
+    width: 32px;
+    border-radius: 2px;
+  }
+
+  &-active {
+    color: #BF9D7D;
+    ::before {
+      background-color: #BF9D7D;
+    }
+  }
+}
