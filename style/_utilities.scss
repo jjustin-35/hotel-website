@@ -419,3 +419,107 @@
         }
     }
 }
+
+//loginLayout
+.l_login{
+    position: relative;
+    background-image: url('/images/行動版/line.png');
+    background-repeat: no-repeat;
+    background-size:contain;
+    background-position-y:32px ;
+    display: flex;
+    align-items: center;
+    @media (min-width: 992px) {
+        background-image: url('/images/桌機版/line3.png');
+        background-position-y:72px ;
+    }
+    .loginForm{
+        width: 100%;
+        padding:0 20px ;
+        @media (min-width: 992px){
+            width:50%;
+            margin: 0 auto;
+        }
+    }
+}
+
+
+//Stepper
+:root {
+    --circle-size: clamp(6rem, 5vw, 3rem);
+    --spacing: clamp(0rem, 0rem, 0rem);
+  }
+.stepper{
+    display: flex;
+    text-decoration: none;
+    .stepper_item{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        //align-items: center;
+        text-align: center;
+        &:not(:last-child) {
+            &:after {
+                content: "";
+                position: relative;
+                top: calc(var(--circle-size) / 2);
+                width: calc(100% - var(--circle-size) - calc(var(--spacing) * 2));
+                left: calc(50% + calc(var(--circle-size) / 2 + var(--spacing)));
+                height: 2px;
+                background-color: #e0e0e0;
+                order: -1;
+            }
+        }
+        .stepper_num{
+            border-radius: 50%;
+            border:1px solid #909090;
+            color: #909090;
+            width: 32px;
+            height: 32px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem auto 0; 
+        }
+        .stepper_title{
+            color: #909090;
+            font-size: 14px;
+        }
+        .bi-check-lg{
+            font-size: 16px;
+            color:white
+        }
+        
+    }
+    .active{
+        .stepper_num{
+            background-color: $primary;
+            color:white;
+        }
+       .stepper_title{
+            color:white;
+       }
+    }
+    // .complete{
+    //     .stepper_num{
+    //         background-color: $primary;
+    //         color:$primary;
+    //         position: relative;
+    //         &::after{
+    //             font-family: bootstrap-icons !important;
+    //             content: '\f633';
+    //             color: white;
+    //             position: absolute;
+    //             left: 0;
+    //             right: 0;
+    //             margin:auto;
+    //             top: 25%;
+    //             display: block;
+    //         }
+    //     }  
+    //     .stepper_title{
+    //         color:white;
+    //     }
+    // }
+}
