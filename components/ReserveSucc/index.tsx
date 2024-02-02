@@ -1,12 +1,12 @@
 "use client";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Container, Row, Col, Button } from "react-bootstrap";
 
 import { RootState } from "@/config/configureStore";
 import { OrderType } from "@/constants/types/order";
 import SuccMessage from "./SuccMessage";
-import ReserveSuccCard from "./Card";
+import ReserveSuccCard from "../OrderCard";
 import "./style.scss";
 
 const ReserveSucc = ({ order }: { order: OrderType }) => {

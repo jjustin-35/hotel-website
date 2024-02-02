@@ -10,11 +10,13 @@ import { updateUser } from "@/redux/user";
 import Tab from "../Tab";
 import Account from "./Account";
 import Profile from "./Profile";
+import OrderCard from "@/components/OrderCard";
 import { tabs } from "./data";
 
 const User = () => {
   const [activeTab, setActiveTab] = useState<string>(tabs[0].key);
   const { user } = useSelector((state: RootState) => state.user);
+  const { orders, orderDetail } = useSelector((state: RootState) => state.orders);
   const dispatch = useDispatch<AppDispatch>();
 
   const handleTabChange = (tab: string) => {
@@ -51,6 +53,16 @@ const User = () => {
               <Account user={user} onSubmit={onSubmit} />
             </Col>
             <Col lg={7}>
+              <Profile user={user} onSubmit={onSubmit} />
+            </Col>
+          </>
+        )}
+        {activeTab === "order" && (
+          <>
+            <Col lg={7}>
+              <OrderCard order={orderDetail} />
+            </Col>
+            <Col lg={5}>
               <Profile user={user} onSubmit={onSubmit} />
             </Col>
           </>

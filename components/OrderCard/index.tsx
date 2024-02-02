@@ -1,11 +1,16 @@
-import { Card } from "react-bootstrap";
-
+import { Button, Card } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import { OrderType } from "@/constants/types/order";
-import CardChecklist from "@/components/CheckList/cardLayout";
+import { AppDispatch } from "@/config/configureStore";
+
+import { deleteOrder } from "@/redux/orders";
 import { getInfoTexts } from "@/helpers/getInfoTexts";
+import CheckList from "../CheckList";
 import "./style.scss";
 
-const ReserveSuccCard = ({ order }: { order: OrderType }) => {
+const OrderCard = ({ order, isCancelable }: { order: OrderType; isCancelable?: boolean }) => {
+  const dispatch = useDispatch<AppDispatch>();
+
   const roomData = order?.roomId;
   const startDate = new Date(order.checkInDate);
   const endDate = new Date(order.checkOutDate);
@@ -22,6 +27,10 @@ const ReserveSuccCard = ({ order }: { order: OrderType }) => {
 
   const facility = getInfoTexts(roomData?.facilityInfo);
   const amenity = getInfoTexts(roomData?.amenityInfo);
+
+  const handleCancel = () => {
+    dispatch(deleteOrder(order._id));
+  }
   return (
     <Card className="reserve-card bg-white rounded-2 d-flex flex-column reserve-card-gap border-0">
       <p className="mb-2">預訂參考編號: {order._id}</p>
@@ -38,17 +47,22 @@ const ReserveSuccCard = ({ order }: { order: OrderType }) => {
           <Card.Title className="h4 reserve-card-text-primary">
             房內設備
           </Card.Title>
-          <CardChecklist data={facility} />
+          <CheckList data={facility} />
         </div>
         <div className="d-flex flex-column gap-2 my-4">
           <Card.Title className="h4 reserve-card-text-primary">
             備品提供
           </Card.Title>
-          <CardChecklist data={amenity} />
+          <CheckList data={amenity} />
         </div>
+        {isCancelable && (
+          <div className="d-flex justify-content-center">
+            <Button className="btn btn-primary" onClick={handleCancel}>取消訂單</Button>
+          </div>
+        )}
       </Card.Body>
     </Card>
   );
 };
 
-export default ReserveSuccCard;
+export default OrderCard;
