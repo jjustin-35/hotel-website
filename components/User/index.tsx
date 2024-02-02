@@ -11,6 +11,7 @@ import Tab from "../Tab";
 import Account from "./Account";
 import Profile from "./Profile";
 import OrderCard from "@/components/OrderCard";
+import History from "./History";
 import { tabs } from "./data";
 
 const User = () => {
@@ -63,7 +64,7 @@ const User = () => {
               <OrderCard order={orderDetail} />
             </Col>
             <Col lg={5}>
-              <Profile user={user} onSubmit={onSubmit} />
+              <History orders={orders} />
             </Col>
           </>
         )}

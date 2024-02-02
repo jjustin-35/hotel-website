@@ -1,10 +1,9 @@
 import { Card } from "react-bootstrap";
-import { useSelector } from "react-redux";
 import Item from "./item";
 import { RootState } from "@/config/configureStore";
+import { OrderType } from "@/constants/types/order";
 
-const History = () => {
-  const { orders } = useSelector((state: RootState) => state.orders);
+const History = ({ orders }: { orders: OrderType[] }) => {
   return (
     <Card className="padding-40 d-flex flex-column gap-40 bg-white rounded-3">
       <Card.Title className="fs-4 fw-bold">訂單紀錄</Card.Title>
