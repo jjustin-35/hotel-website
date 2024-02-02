@@ -1,11 +1,12 @@
 import { FC } from "react";
-import LoginLayout from "@/components/LoginLayout"
+import LoginLayout from "@/components/LoginLayout";
 import LoginForm from "@/components/LoginForm";
-const Login:FC = ()=>{
-    return(
-       <LoginLayout>
-           <LoginForm/>
-       </LoginLayout>    )
-}
+const Login: FC = () => {
+  return (
+    <LoginLayout>
+      <LoginForm />
+    </LoginLayout>
+  );
+};
 
-export default Login
+export default Login;

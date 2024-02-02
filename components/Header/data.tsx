@@ -31,7 +31,7 @@ const data: DataType = {
       },
       {
         text: "會員登入",
-        link: "/auth/signin",
+        link: "/auth/login",
       },
     ],
     button: {

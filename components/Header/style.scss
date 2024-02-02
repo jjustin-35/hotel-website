@@ -1,3 +1,7 @@
+.header {
+  transition: all 0.3s;
+}
+
 .bg-black {
   background-color: black;
 }
@@ -59,7 +63,7 @@
 }
 
 .nav-collapse-list {
-  height: calc(100vh - 98px);
+  height: calc(100vh - 66px);
 
   @media screen and (min-width: 767px) {
     height: auto;

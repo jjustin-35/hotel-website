@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import "./style.scss";
 import dataset from "./data";
 import { RootState } from "@/config/configureStore";
+import Image from "next/image";
 
 const Bugger = ({ isOpen }: { isOpen: boolean }) => {
   return (
@@ -25,11 +26,16 @@ const Header = ({ isScrollChange }: { isScrollChange?: boolean }) => {
   const isAuth = !!user;
   const data = isAuth ? dataset.user : dataset.guest;
 
-  const handleClick = () => setIsOpen((prev) => !prev);
+  const handleClick = () => {
+    setIsOpen((prev) => !prev);
+    if (isScrollChange && window.scrollY < 120) {
+      return !isOpen ? setBgColor("black") : setBgColor("transparent");
+    }
+  };
 
   const handleScroll = () => {
     if (!isScrollChange) return;
-    if (window.scrollY > 100) {
+    if (window.scrollY > 120) {
       setBgColor("black");
       return;
     }
@@ -48,11 +54,32 @@ const Header = ({ isScrollChange }: { isScrollChange?: boolean }) => {
     };
   }, [isScrollChange]);
 
+  useEffect(() => {
+    if (isOpen) {
+      window.document.body.style.overflowY = "hidden";
+      return;
+    }
+
+    window.document.body.style.overflowY = "unset";
+  }, [isOpen]);
+
   return (
-    <Navbar expand="md" variant="dark" bg={bgColor} sticky="top">
+    <Navbar
+      expand="md"
+      variant="dark"
+      bg={bgColor}
+      fixed={isScrollChange ? "top" : undefined}
+      sticky={!isScrollChange ? "top" : undefined}
+      className="header"
+    >
       <Container>
         <Navbar.Brand href="/">
-          <img {...data.brand} />
+          <Image
+            {...data.brand}
+            width={110}
+            height={40}
+            sizes="(min-width: 768px) 196px, 72px"
+          />
         </Navbar.Brand>
         <Navbar.Toggle
           aria-controls="navbar-nav"
@@ -61,7 +88,10 @@ const Header = ({ isScrollChange }: { isScrollChange?: boolean }) => {
         >
           <Bugger isOpen={isOpen} />
         </Navbar.Toggle>
-        <Navbar.Collapse id="navbar-nav" className="justify-content-end">
+        <Navbar.Collapse
+          id="navbar-nav"
+          className={`justify-content-end ${isOpen ? "bg-black" : ""}`}
+        >
           <Nav className="gap-md-3 align-items-center align-items-md-stretch justify-content-center nav-collapse-list">
             {data.menu.map((item, idx) => (
               <Nav.Item key={idx}>

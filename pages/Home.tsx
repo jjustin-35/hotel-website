@@ -4,17 +4,16 @@ import About from "../components/About";
 import Room from "../components/Room";
 import Food from "../components/Food";
 import Transportation from "../components/Transportation";
-function Home(){
-    return(
-        <>
-            <Banner />
-            <News />
-            <About />
-            <Room />
-            <Food />
-            <Transportation />
-        </>
-        
-    )
+function Home() {
+  return (
+    <>
+      <Banner />
+      <News />
+      <About />
+      <Room />
+      <Food />
+      <Transportation />
+    </>
+  );
 }
-export default Home
+export default Home;
