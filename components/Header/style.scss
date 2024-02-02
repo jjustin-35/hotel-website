@@ -1,0 +1,71 @@
+.header {
+  transition: all 0.3s;
+}
+
+.bg-black {
+  background-color: black;
+}
+
+.bg-transparent {
+  background-color: transparent;
+}
+
+.font-white {
+  color: white;
+}
+
+.bugger {
+  width: 40px;
+  height: 24px;
+  cursor: pointer;
+  position: relative;
+  span {
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    border-radius: 2px;
+    background-color: white;
+    transition: all 0.2s;
+    left: 50%;
+    transform: translateX(-50%);
+
+    &:first-child {
+      top: 0;
+    }
+    &:nth-child(2) {
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &:last-child {
+      bottom: 0;
+    }
+  }
+
+  &.bugger-open {
+    width: 40px;
+
+    span {
+      &:first-child {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+      &:nth-child(2) {
+        opacity: 0;
+      }
+      &:last-child {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+    }
+  }
+}
+
+.nav-collapse-list {
+  height: calc(100vh - 66px);
+
+  @media screen and (min-width: 767px) {
+    height: auto;
+  }
+}

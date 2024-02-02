@@ -1,0 +1,13 @@
+.reserve-card {
+  margin-top: 40px;
+  padding: 40px;
+
+  @media screen and (min-width: 768px) {
+    position: sticky;
+    top: 124px;
+  }
+}
+
+.reserve-card-gap {
+  gap: 40px;
+}

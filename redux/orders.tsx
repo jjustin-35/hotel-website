@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import type { OrderType, ReserveOrderType } from "@/constants/types/order";
 import fetchApi from "@/helpers/apiHelper";
 import { apiMethod } from "@/constants/types/api";
 import config from "@/config";
@@ -22,9 +23,10 @@ type SetOrdersDataType = {
   userInfo: UserInfoType;
 };
 
-type InitialStateType = {
-  orders: Record<string, any>[];
-  orderDetail: Record<string, any>;
+type InitialState = {
+  orders: OrderType[];
+  orderDetail: OrderType;
+  reserveOrder: ReserveOrderType;
   errorMessage: string;
 };
 
@@ -109,16 +111,42 @@ export const deleteOrder = createAsyncThunk(
   }
 );
 
-const initialState: InitialStateType = {
+const demoReserveOrder: ReserveOrderType = {
+  roomName: "roomName",
+  roomId: "123",
+  checkInDate: "2021-10-10",
+  checkOutDate: "2021-10-11",
+  peopleNum: 2,
+  userInfo: {
+    address: {
+      zipcode: 123,
+      detail: "detail",
+    },
+    name: "name",
+    phone: "0987654321",
+    email: "email@test.com",
+  },
+};
+
+
+const initialState: InitialState = {
   orders: [],
-  orderDetail: {},
+  orderDetail: null,
+  reserveOrder: demoReserveOrder,
   errorMessage: "",
 };
 
 const ordersSlice = createSlice({
   name: "orders",
   initialState,
-  reducers: {},
+  reducers: {
+    setReserveOrder: (
+      state,
+      action: { type: string; payload: ReserveOrderType }
+    ) => {
+      state.reserveOrder = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getOrders.fulfilled, (state, action) => {
       state.orders = action.payload;
@@ -158,3 +186,5 @@ const ordersSlice = createSlice({
 });
 
 export default ordersSlice.reducer;
+
+export const orderActions = ordersSlice.actions;

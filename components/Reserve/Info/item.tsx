@@ -1,0 +1,125 @@
+import { useState } from "react";
+import { Control, set, useForm } from "react-hook-form";
+import { OptionType } from "@/constants/types/global";
+import { RoomType } from "@/constants/types/room";
+import { isArrayExist } from "@/helpers/other";
+import TextField from "@/components/Fields/text";
+import Select from "@/components/Fields/select";
+import "./style.scss";
+
+interface InfoItemProps {
+  title: string;
+  subItems?: {
+    title: string;
+    key: string;
+  }[];
+  name: string;
+  info: string | number | string[];
+  infoOptions?: RoomType[];
+  onEdit: (data: Record<string, any>) => void;
+}
+
+const Edit = ({
+  type,
+  name,
+  control,
+  options,
+}: {
+  type: string;
+  name: string;
+  options?: OptionType[];
+  control: Control;
+}) => {
+  if (type === "select") {
+    return (
+      <Select control={control} field={{ name, type }} options={options} />
+    );
+  }
+  return <TextField control={control} field={{ name, type }} />;
+};
+
+const Content = ({
+  subItems,
+  info,
+}: {
+  subItems?: InfoItemProps["subItems"];
+  info: InfoItemProps["info"];
+}) => {
+  const isInfoArray = Array.isArray(info);
+  return (
+    <>
+      {subItems &&
+        isInfoArray &&
+        subItems.map((item, idx) => (
+          <p key={item.key}>{`${item.title}: ${info[idx]}`}</p>
+        ))}
+      {!isInfoArray && <p>{info}</p>}
+    </>
+  );
+};
+
+const InfoItem = ({
+  title,
+  subItems,
+  name,
+  info,
+  infoOptions,
+  onEdit,
+}: InfoItemProps) => {
+  const [isEdit, setIsEdit] = useState<boolean>(
+    !info || !isArrayExist(info as string[])
+  );
+  const { control } = useForm({
+    defaultValues: {
+      [name]: "",
+    },
+  });
+
+  const options: OptionType[] = infoOptions?.map((item) => ({
+    key: item._id,
+    value: item.name,
+  }));
+
+  const type = (() => {
+    if (name === "roomName") return "select";
+    if (name === "peopleNum") return "number";
+    return "text";
+  })();
+
+  const onClick = () => {
+    if (!isEdit) return setIsEdit(true);
+
+    if (name === "roomName") {
+      const room = infoOptions?.find(
+        (item) => item._id === control._formValues[name]
+      );
+      onEdit({ [name]: room?.name, roomId: room?._id });
+      setIsEdit(false);
+      return;
+    }
+
+    onEdit({ [name]: control._formValues[name] });
+    setIsEdit(false);
+    return;
+  };
+  return (
+    <div className="d-flex justify-content-between align-items-end">
+      <div className="d-flex gap-2 flex-column">
+        <p className="fw-bold reserve-item-title mb-0">{title}</p>
+        {isEdit ? (
+          <Edit type={type} name={name} control={control} options={options} />
+        ) : (
+          <Content subItems={subItems} info={info} />
+        )}
+      </div>
+      <a
+        onClick={onClick}
+        className="link-dark cursor-pointer text-decoration-underline"
+      >
+        {isEdit ? "完成" : "編輯"}
+      </a>
+    </div>
+  );
+};
+
+export default InfoItem;

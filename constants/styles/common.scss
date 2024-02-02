@@ -1,0 +1,48 @@
+.px-2rem {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.box-shadow-0 {
+  box-shadow: unset !important;
+}
+
+.page {
+  min-height: 100vh;
+
+  &.page-bg-light {
+    background-color: #f7f2ee;
+  }
+
+  &.page-bg-dark {
+    background-color: black;
+  }
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.gap-40 {
+  gap: 40px;
+}
+
+.padding {
+  &-40 {
+    padding: 40px;
+  }
+
+  &-x-40 {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  &-y-40 {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}

@@ -1,0 +1,37 @@
+.reserve-card {
+    padding: 40px;
+  }
+
+.reserve-card-text {
+  &-primary {
+    padding-left: 16px;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 4px;
+      height: 100%;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      background-color: #bf9d7d;
+    }
+  }
+
+  &-dark {
+    padding-left: 16px;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 4px;
+      height: 100%;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      background-color: #909090;
+    }
+  }
+}

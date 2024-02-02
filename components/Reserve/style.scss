@@ -1,0 +1,20 @@
+.reserve-section {
+  padding: 40px 0;
+  border-bottom: 1px solid #909090;
+
+  &:last-child {
+    border-bottom: unset;
+  }
+}
+
+.reserve-section-title {
+  margin-bottom: 40px;
+}
+
+.reserve-page {
+  padding: 40px 0;
+
+  @media screen and (min-width: 768px) {
+    padding: 80px 0;
+  }
+}
