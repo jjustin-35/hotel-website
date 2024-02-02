@@ -4,7 +4,7 @@ import config from "@/config";
 import apiPaths from "@/constants/apis";
 import fetchApi from "@/helpers/apiHelper";
 import { apiMethod } from "@/constants/types/api";
-import { UserType } from "@/constants/types/user";
+import { UpdateUserType, UserType } from "@/constants/types/user";
 
 export const getUser = createAsyncThunk(
   "user/getUser",
@@ -17,6 +17,30 @@ export const getUser = createAsyncThunk(
     const resp = await fetchApi(
       `${config.API_URL}${apiPaths.user}`,
       apiMethod.GET,
+      headers
+    );
+
+    if (!resp.status) {
+      rejectWithValue(resp.message);
+      return;
+    }
+
+    return resp.result;
+  }
+);
+
+export const updateUser = createAsyncThunk(
+  "user/updateUser",
+  async (data: UpdateUserType, { rejectWithValue }) => {
+    const token = Cookies.get("access_token");
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+
+    const resp = await fetchApi(
+      `${config.API_URL}${apiPaths.user}`,
+      apiMethod.PUT,
+      data,
       headers
     );
 
@@ -50,7 +74,11 @@ const userSlice = createSlice({
     builder.addCase(getUser.rejected, (state, action) => {
       state.errorMessage = action.payload as string;
     });
-  }
+
+    builder.addCase(updateUser.rejected, (state, action) => {
+      state.errorMessage = action.payload as string;
+    });
+  },
 });
 
 export default userSlice.reducer;

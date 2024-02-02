@@ -14,3 +14,16 @@ export type UserType = {
   updatedAt: string;
   id: string;
 };
+
+export type UpdateUserType = {
+  userId: string;
+  name: string;
+  phone: string;
+  birthday: string;
+  address: {
+    zipcode: number;
+    detail: string;
+  };
+  oldPassword: string;
+  newPassword: string;
+};

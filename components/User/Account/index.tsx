@@ -1,13 +1,30 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Button, Card } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { UserType } from "@/constants/types/user";
+
+import { UpdateUserType, UserType } from "@/constants/types/user";
+import { updateUser } from "@/redux/user";
+
 import TextField from "@/components/Fields/text";
 import data from "./data";
+import { AppDispatch } from "@/config/configureStore";
 
 const Account = ({ user }: { user: UserType }) => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const { control, handleSubmit } = useForm();
+  const dispatch = useDispatch<AppDispatch>();
+
+  const onSubmit = async (data: any) => {
+    const updateData: UpdateUserType = {
+      ...user,
+      userId: user.id,
+      oldPassword: data.password,
+      newPassword: data.newPassword,
+    };
+    dispatch(updateUser(updateData));
+  };
+
   return (
     <Card className="padding-40 d-flex flex-column gap-40 bg-white rounded-3">
       <Card.Title className="fs-4">
@@ -28,7 +45,7 @@ const Account = ({ user }: { user: UserType }) => {
       )}
       {isEdit && (
         <div>
-          <form onSubmit={handleSubmit((data) => console.log(data))}>
+          <form onSubmit={handleSubmit(() => onSubmit(data))}>
             {data.map((field, idx) => (
               <TextField key={idx} control={control} field={field} />
             ))}
