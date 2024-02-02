@@ -9,7 +9,7 @@ import AuthWrapper from "@/libs/authWrapper";
 import ReduxProvider from "@/libs/reduxProvider";
 import Footer from "@/components/Footer/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: "享樂酒店",
@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <body className={inter.className}>
         <ReduxProvider>
           <AuthWrapper>
