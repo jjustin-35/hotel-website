@@ -1,59 +1,52 @@
 'use client';
 import Image from 'next/image';
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Navigation, Pagination } from 'swiper/modules';
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+import './style.scss';
 
-export default function Banner() {
+import Carousel from 'react-bootstrap/Carousel';
+
+function HeroBanner() {
   const banner: string[] = [
     '/images/desktop/banner.png',
+    '/images/desktop/about.png',
     '/images/desktop/banner.png',
-    '/images/desktop/banner.png',
-    '/images/desktop/banner.png',
+    '/images/desktop/about.png',
     '/images/desktop/banner.png',
   ];
   return (
-    <Swiper
-      modules={[Autoplay, Navigation, Pagination]}
-      spaceBetween={50} //Slide之間的距離
-      slidesPerView={1} //一頁顯示幾個slide
-      autoplay={{
-        delay: 8000,
-        disableOnInteraction: false,
-      }}
-      loop={true}
-      navigation={false}
-      pagination={{ clickable: true }}
-    >
-      {banner.map((i, index) => {
+    <Carousel data-bs-theme='dark'>
+      {banner.map((item, id) => {
         return (
-          <SwiperSlide key={index} className='banner position-relative'>
-            <div className='cover'></div>
-            <Image className='object-cover w-100 vh-100' width={1920} height={800} src={i} alt='全新開幕' />
-            <div className='banner-caption position-absolute d-lg-flex align-items-center'>
-              <div className='title'>
-                <div className='text-center text-lg-start'>
-                  <h2 className='text-primary'>享樂酒店</h2>
-                  <p className='text-primary mb-4'>Enjoyment Luxury Hotel</p>
+          <Carousel.Item key={id}>
+            <Image
+              className='d-block w-100 object-cover'
+              style={{ filter: 'brightness(45%)' }}
+              src={item}
+              width={1920}
+              height={800}
+              alt='First slide'
+            />
+            <Carousel.Caption className='position-absolute' style={{ top: '35%' }}>
+              <div className='d-flex flex-column flex-lg-row justify-content-lg-center align-items-lg-center'>
+                <div className='col-lg-5 text-primary text-lg-start'>
+                  <h2>享樂酒店</h2>
+                  <p>Enjoyment Luxury Hotel</p>
                   <div
                     className='w-100 d-none d-lg-flex'
                     style={{ background: 'linear-gradient(to right, #BE9C7C,#FFFFFF)', height: '2px' }}
                   ></div>
-                  <div className='d-flex d-lg-none w-50 w-lg-100 bannerColumnLine mb-5'></div>
-                  <h2 className='text-white d-lg-none'>客房旅宿</h2>
+                  <div className='d-flex d-lg-none w-50 bannerColumnLine mb-5'></div>
+                </div>
+
+                <div className='col-lg-3 text-white mx-lg-3'>
+                  <h1 className='fw-bold'>客房旅宿</h1>
                 </div>
               </div>
-              <div className='content'>
-                <h2 className='d-none d-lg-block text-white'>客房旅宿</h2>
-              </div>
-            </div>
-          </SwiperSlide>
+            </Carousel.Caption>
+          </Carousel.Item>
         );
       })}
-    </Swiper>
+    </Carousel>
   );
 }
+
+export default HeroBanner;
