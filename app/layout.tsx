@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../constants/styles/global.scss";
 import "../constants/styles/common.scss";
-import "bootstrap-icons/font/bootstrap-icons.css"
+import "../style/all.scss";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 import ReduxProvider from "@/libs/reduxProvider";
+import Footer from "@/components/Footer/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +23,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ReduxProvider>{children}</ReduxProvider>
+        <ReduxProvider>
+          {children}
+          <Footer />
+        </ReduxProvider>
       </body>
     </html>
   );
