@@ -1,9 +1,13 @@
 'use client'
-import { FC } from "react";
+import { FC, useState } from "react";
+import { useRouter } from 'next/navigation';
 import { useForm } from "react-hook-form";
 import { Input } from "./FormElements";
 import Link from "next/link";
-
+import axios from "axios";
+import config from '../config/index';
+import Loading from "./Loading";
+import Swal from 'sweetalert2';
 
 
 type Inputs = {
@@ -11,13 +15,53 @@ type Inputs = {
     exampleRequired: string,
   };
 
+  interface formData {
+    email: string;
+    password: string;
+  }
+  
 const LoginForm: FC = () => {
+    const [isLoading,setIsLoading] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm<Inputs>({mode:'onTouched'});
-    const onsubmit = (data)=>{
-        console.log(data)
+    const router = useRouter();
+    const onsubmit = async(data)=>{  
+        const {email , password} = data
+        const form:formData = {
+            email:email,
+            password:password
+        }
+        try {
+            setIsLoading(true);
+            const res = await axios.post(`${config.API_URL}/api/v1/user/login`,form);
+            const {status} = res.data;
+            const { name } = res.data.result;
+            router.push('/')
+            if(status){
+                Swal.fire({
+                    title: '登入成功!',
+                    text: `歡迎 ${name}`,
+                    icon: 'success',
+                  })
+            }
+            setIsLoading(false);
+            
+        } catch (error) {
+            const{ message } = error.response.data;
+            if (error instanceof Error) {
+                Swal.fire({
+                    title: '登入失敗!',
+                    text: message,
+                    icon: 'error',
+                  })
+              } else {
+                console.log('Unexpected error', error);
+              }
+              setIsLoading(false);
+        }
     }
     return (
         <div className='loginForm'>
+            <Loading  isLoading = {isLoading}/>
             <div className="mb-5">
                 <p className='text-primary mb-2'>享樂酒店，誠摯歡迎</p>
                 <h1 className='text-white fw-bold'>立即開始旅程</h1>
