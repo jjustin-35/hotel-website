@@ -10,20 +10,10 @@ import TextField from "@/components/Fields/text";
 import data from "./data";
 import { AppDispatch } from "@/config/configureStore";
 
-const Account = ({ user }: { user: UserType }) => {
+const Account = ({ user,onSubmit }: { user: UserType; onSubmit: (data: any) => void }) => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const { control, handleSubmit } = useForm();
   const dispatch = useDispatch<AppDispatch>();
-
-  const onSubmit = async (data: any) => {
-    const updateData: UpdateUserType = {
-      ...user,
-      userId: user.id,
-      oldPassword: data.password,
-      newPassword: data.newPassword,
-    };
-    dispatch(updateUser(updateData));
-  };
 
   return (
     <Card className="padding-40 d-flex flex-column gap-40 bg-white rounded-3">
