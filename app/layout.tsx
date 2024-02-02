@@ -5,6 +5,7 @@ import "../constants/styles/common.scss";
 import "../style/all.scss";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
+import AuthWrapper from "@/libs/authWrapper";
 import ReduxProvider from "@/libs/reduxProvider";
 import Footer from "@/components/Footer/Footer";
 
@@ -24,8 +25,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ReduxProvider>
-          {children}
-          <Footer />
+          <AuthWrapper>
+            {children}
+            <Footer />
+          </AuthWrapper>
         </ReduxProvider>
       </body>
     </html>

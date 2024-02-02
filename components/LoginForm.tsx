@@ -2,12 +2,16 @@
 import { FC, useState } from "react";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import Cookies from "js-cookie";
+import { setUser } from "@/redux/user";
 import { Input } from "./FormElements";
 import Link from "next/link";
 import axios from "axios";
 import config from "../config/index";
 import Loading from "./Loading";
 import Swal from "sweetalert2";
+import { UserType } from "@/constants/types/user";
 
 type Inputs = {
   email: string;
@@ -27,6 +31,7 @@ const LoginForm: FC = () => {
     formState: { errors },
   } = useForm<Inputs>({ mode: "onTouched" });
   const router = useRouter();
+  const dispatch = useDispatch();
   const onsubmit: SubmitHandler<Inputs> = async (data) => {
     const { email, password } = data;
     const form: formData = {
@@ -37,7 +42,11 @@ const LoginForm: FC = () => {
       setIsLoading(true);
       const res = await axios.post(`${config.API_URL}/api/v1/user/login`, form);
       const { status } = res.data;
-      const { name } = res.data.result;
+      const token = res.data.token;
+      const data = res.data.result as UserType;
+      const { name } = data;
+      dispatch(setUser(data));
+      Cookies.set("access_token", token, { expires: 7 });
       router.push("/");
       if (status) {
         Swal.fire({

@@ -102,7 +102,7 @@ const Header = ({ isScrollChange }: { isScrollChange?: boolean }) => {
             ))}
             {isAuth && (
               <Nav.Item>
-                <Nav.Link href="/member">{user.name}</Nav.Link>
+                <Nav.Link href="/user" className="font-white p-3">{user.name}</Nav.Link>
               </Nav.Item>
             )}
             <Button

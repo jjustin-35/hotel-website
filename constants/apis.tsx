@@ -1,5 +1,5 @@
 const apiPaths = {
-  user: '/api/vi/user',
+  user: '/api/v1/user',
   rooms: "/api/v1/rooms",
   orders: "/api/v1/orders",
 };

@@ -17,6 +17,7 @@ export const getUser = createAsyncThunk(
     const resp = await fetchApi(
       `${config.API_URL}${apiPaths.user}`,
       apiMethod.GET,
+      undefined,
       headers
     );
 
@@ -54,7 +55,7 @@ export const updateUser = createAsyncThunk(
 );
 
 type InitialState = {
-  user?: UserType;
+  user: UserType | null;
   errorMessage?: string;
 };
 
@@ -66,7 +67,11 @@ const initialState: InitialState = {
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    setUser: (state, action) => {
+      state.user = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getUser.fulfilled, (state, action) => {
       state.user = action.payload;
@@ -82,3 +87,5 @@ const userSlice = createSlice({
 });
 
 export default userSlice.reducer;
+
+export const { setUser } = userSlice.actions;
