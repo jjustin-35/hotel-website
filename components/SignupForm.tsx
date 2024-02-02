@@ -1,6 +1,6 @@
 'use client'
 import { FC, useEffect, useState, useRef } from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { Input, CheckboxRadio } from "./FormElements";
 import Link from "next/link";
 import axios from "axios";
@@ -27,6 +27,15 @@ const SignupForm: FC = () => {
     const [isLoading,setIsLoading] = useState(false)
     const { register, handleSubmit, formState: { errors },getValues } = useForm<Inputs>({ mode: 'onTouched' });
 
+    type Inputs ={
+        name: string;
+        email: string;
+        password: string;
+        phone: string;
+        birthday: string;
+        detail:string
+    }
+    
     interface Address {
         zipcode: number;
         detail: string;
@@ -41,7 +50,7 @@ const SignupForm: FC = () => {
         address: Address;
       }
 
-    const onsubmit = async(data:any) => {
+    const onsubmit:SubmitHandler<Inputs> = async(data) => {
         const {name,email,password,phone,birthday,detail} = data
         const form:formData = {
             name:name,
@@ -148,7 +157,7 @@ const SignupForm: FC = () => {
                                 },
                             }}
                             placeholder="hello@exsample.com"
-                            action={(e)=>setEmail(e.target.value)}
+                            action={(e:any)=>setEmail(e.target.value)}
                         ></Input>
                     </div>
                     <div className="mb-3">

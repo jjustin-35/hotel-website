@@ -1,7 +1,7 @@
 'use client'
 import { FC, useState } from "react";
 import { useRouter } from 'next/navigation';
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { Input } from "./FormElements";
 import Link from "next/link";
 import axios from "axios";
@@ -11,8 +11,8 @@ import Swal from 'sweetalert2';
 
 
 type Inputs = {
-    example: string,
-    exampleRequired: string,
+    email: string,
+    password: string,
   };
 
   interface formData {
@@ -24,7 +24,7 @@ const LoginForm: FC = () => {
     const [isLoading,setIsLoading] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm<Inputs>({mode:'onTouched'});
     const router = useRouter();
-    const onsubmit = async(data)=>{  
+    const onsubmit:SubmitHandler<Inputs> = async(data)=>{  
         const {email , password} = data
         const form:formData = {
             email:email,
@@ -57,7 +57,7 @@ const LoginForm: FC = () => {
                 console.log('Unexpected error', error);
               }
               setIsLoading(false);
-              
+
         }
     }
     return (

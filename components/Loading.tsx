@@ -1,6 +1,6 @@
 import ReactLoading from 'react-loading';
 
-function Loading({ isLoading }:boolean) {
+function Loading({ isLoading }:any) {
     return (
         <>
             {isLoading && (
