@@ -3,7 +3,7 @@ import Logo from '../../public/images/desktop/logo.png';
 
 function Footer() {
   return (
-    <section className='footer bg-black py-8'>
+    <section className='footer bg-dark py-8'>
       <div className='container '>
         <div className='row row-cols-1 row-cols-md-2 pb-8'>
           <div className='col'>

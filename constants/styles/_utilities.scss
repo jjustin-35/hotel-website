@@ -6,10 +6,6 @@
   letter-spacing: 1.2px;
 }
 
-h6 {
-  font-size: 20px;
-}
-
 h1 {
   font-size: 48px;
 }
@@ -18,8 +14,33 @@ h2 {
   font-size: 40px;
 }
 
+h5 {
+  font-size: 24px;
+}
+
+h6 {
+  font-size: 20px;
+}
+
+p {
+  font-size: 16px;
+  line-height: 24px;
+}
 .object-cover {
   object-fit: cover;
+}
+
+//swiper
+.swiper-pagination-bullet {
+  border-radius: 0% !important;
+  width: 32px !important;
+  height: 4px !important;
+  background-color: white !important;
+}
+
+.swiper-pagination-bullet-active {
+  width: 60px !important;
+  background-color: $primary !important;
 }
 
 //Footer
