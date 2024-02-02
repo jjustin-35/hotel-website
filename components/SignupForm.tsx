@@ -4,6 +4,9 @@ import { useForm } from "react-hook-form";
 import { Input, CheckboxRadio } from "./FormElements";
 import Link from "next/link";
 import axios from "axios";
+import config from '../config/index';
+import Loading from "./Loading";
+import Swal from 'sweetalert2';
 
 type Inputs = {
     example: string,
@@ -20,13 +23,65 @@ const SignupForm: FC = () => {
     const [zipCode, setZipCode] = useState('');
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
-    const [checked,setChecked] = useState('')
-    
-
+    const [checked,setChecked] = useState('');
+    const [isLoading,setIsLoading] = useState(false)
     const { register, handleSubmit, formState: { errors },getValues } = useForm<Inputs>({ mode: 'onTouched' });
-    const onsubmit = (data) => {
-        console.log(data)
+
+    interface Address {
+        zipcode: number;
+        detail: string;
+      }
+      
+      interface formData {
+        name: string;
+        email: string;
+        password: string;
+        phone: string;
+        birthday: string;
+        address: Address;
+      }
+
+    const onsubmit = async(data:any) => {
+        const {name,email,password,phone,birthday,detail} = data
+        const form:formData = {
+            name:name,
+            email:email,
+            password:password,
+            phone:phone,
+            birthday:new Date(birthday).toLocaleDateString(),
+            address:{
+                zipcode:Number(zipCode),
+                detail:detail
+            }
+        }
+        try {
+            setIsLoading(true)
+            const res = await axios.post(`${config.API_URL}/api/v1/user/signup`,form);
+            const {status} = res.data;
+            //console.log(res.data)
+            if(status){
+                Swal.fire({
+                    text: '註冊成功!',
+                    icon: 'success',
+                  })
+            }
+            setIsLoading(false);
+        } catch (error) {
+            const {message} = error.response.data
+            if (error instanceof Error) {
+                Swal.fire({
+                    title: '註冊失敗!',
+                    text: message,
+                    icon: 'error',
+                  })
+              } else {
+                console.log('Unexpected error', error);
+              }
+              setIsLoading(false);
+        }
+        
     }
+
 
     useEffect(() => {
         (async () => {
@@ -43,14 +98,23 @@ const SignupForm: FC = () => {
         formStep2.current?.classList.remove('d-none');
         formStep2.current?.classList.add('d-block');
         stepperItem2.current?.classList.add('active');
-        if(email==='' || password===''|| checked===''){
-            console.log(false)
-        }
+    }
+
+    function prevStep(){
+        formStep1.current?.classList.remove('d-none');
+        step1.current?.classList.remove('d-none');
+        stepCompleted.current?.classList.add('d-none');
+        stepCompleted.current?.classList.remove('d-flex');
+        formStep2.current?.classList.add('d-none');
+        formStep2.current?.classList.remove('d-block');
+        stepperItem2.current?.classList.remove('active');
     }
 
     return (
+        
         <div className='loginForm'>
-            <div className="mb-5">
+            <Loading isLoading={isLoading}/>
+            <div className="mb-3">
                 <p className='text-primary mb-2'>享樂酒店，誠摯歡迎</p>
                 <h1 className='text-white fw-bold'>立即註冊</h1>
                 <div >
@@ -137,7 +201,7 @@ const SignupForm: FC = () => {
                     </div>
                     <div className="mb-3">
                         <Input
-                            id='tel'
+                            id='phone'
                             labelText='手機號碼'
                             type='tel'
                             errors={errors}
@@ -158,7 +222,7 @@ const SignupForm: FC = () => {
                     </div>
                     <div className="mb-3">
                         <Input
-                            id='date'
+                            id='birthday'
                             labelText='生日'
                             type='date'
                             errors={errors}
@@ -220,10 +284,10 @@ const SignupForm: FC = () => {
                             rules={{
                                 required: '請同意本網站個資使用規範',
                             }}
-                            click={(e)=>console.log(e.target.checked)}
                         >
                         </CheckboxRadio>
                     </div>
+                    <button type="button" className="btn btn-primary text-white rounded w-100 mb-3" onClick={()=>prevStep()}>上一步</button>
                     <button type='submit' className='btn w-100 py-3 rounded mb-3 btn-login' style={{ background: 'white' }}>完成註冊</button>
                 </div>
             </form>
