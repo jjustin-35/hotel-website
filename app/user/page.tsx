@@ -1,5 +1,11 @@
-const User = () => {
-  return <></>;
+import User from "@/components/User";
+
+const UserPage = () => {
+  return (
+    <>
+      <User />
+    </>
+  );
 };
 
-export default User;
+export default UserPage;

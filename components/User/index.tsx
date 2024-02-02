@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,7 +9,6 @@ import { updateUser } from "@/redux/user";
 
 import Tab from "../Tab";
 import Account from "./Account";
-
 import { tabs } from "./data";
 
 const User = () => {
