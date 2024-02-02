@@ -9,6 +9,7 @@ import { updateUser } from "@/redux/user";
 
 import Tab from "../Tab";
 import Account from "./Account";
+import Profile from "./Profile";
 import { tabs } from "./data";
 
 const User = () => {
@@ -30,8 +31,8 @@ const User = () => {
         zipcode: data.zipcode || user.address.zipcode,
         detail: data.detail || user.address.detail,
       },
-      oldPassword: data.password,
-      newPassword: data.newPassword,
+      ...(data.password && { oldPassword: data.password }),
+      ...(data.newPassword && { newPassword: data.newPassword }),
     };
     dispatch(updateUser(updateData));
   };
@@ -44,12 +45,16 @@ const User = () => {
         handleTabChange={handleTabChange}
       />
       <Row>
-        <Col lg={5}>
-          {activeTab === "account" && (
-            <Account user={user} onSubmit={onSubmit} />
-          )}
-        </Col>
-        <Col lg={7}></Col>
+        {activeTab === "account" && (
+          <>
+            <Col lg={5}>
+              <Account user={user} onSubmit={onSubmit} />
+            </Col>
+            <Col lg={7}>
+              <Profile user={user} onSubmit={onSubmit} />
+            </Col>
+          </>
+        )}
       </Row>
     </Container>
   );

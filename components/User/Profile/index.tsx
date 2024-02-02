@@ -6,7 +6,13 @@ import TextField from "@/components/Fields/text";
 import data from "./data";
 import AddressFields from "@/components/Fields/address";
 
-const Profile = ({ user }: { user: UserType }) => {
+const Profile = ({
+  user,
+  onSubmit,
+}: {
+  user: UserType;
+  onSubmit: (data: any) => void;
+}) => {
   const { address } = user;
   const adrressString = `${address.county}${address.city}${address.detail}`;
   const [isEdit, setIsEdit] = useState<boolean>(false);
@@ -43,7 +49,7 @@ const Profile = ({ user }: { user: UserType }) => {
       )}
       {isEdit && (
         <div>
-          <form onSubmit={handleSubmit((data) => console.log(data))}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             {data.map((field, idx) =>
               field.name === "address" ? (
                 <AddressFields key={idx} field={field} control={control} />

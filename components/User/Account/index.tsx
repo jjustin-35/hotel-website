@@ -1,19 +1,15 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { Button, Card } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 
-import { UpdateUserType, UserType } from "@/constants/types/user";
-import { updateUser } from "@/redux/user";
+import { UserType } from "@/constants/types/user";
 
 import TextField from "@/components/Fields/text";
 import data from "./data";
-import { AppDispatch } from "@/config/configureStore";
 
 const Account = ({ user,onSubmit }: { user: UserType; onSubmit: (data: any) => void }) => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const { control, handleSubmit } = useForm();
-  const dispatch = useDispatch<AppDispatch>();
 
   return (
     <Card className="padding-40 d-flex flex-column gap-40 bg-white rounded-3">
