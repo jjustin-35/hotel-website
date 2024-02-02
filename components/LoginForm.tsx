@@ -57,6 +57,7 @@ const LoginForm: FC = () => {
                 console.log('Unexpected error', error);
               }
               setIsLoading(false);
+              
         }
     }
     return (
