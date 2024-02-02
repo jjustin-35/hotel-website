@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Image } from 'react-bootstrap';
 import RoomImg1 from '../../public/images/desktop/room2-1.png';
@@ -7,6 +9,7 @@ import RoomImg4 from '../../public/images/desktop/room2-4.png';
 import RoomImg5 from '../../public/images/desktop/room2-5.png';
 import Link from 'next/link';
 import './style.scss';
+import PeopleCounter from '../PeopleCounter';
 
 const RoomContent = () => {
   return (
@@ -265,7 +268,47 @@ const RoomContent = () => {
               </ol>
             </div>
           </div>
-          <div className='col-lg-4'></div>
+          <div className='col-lg-5'>
+            <div className='card'>
+              <div className='card-header bg-transparent'>
+                <h5 className='fw-bold pt-2'>預訂房型</h5>
+              </div>
+              <div className='card-body text-start'>
+                <h2 className='card-title'>尊爵雙人房</h2>
+                <p className='card-text'>享受高級的住宿體驗，尊爵雙人房提供給您舒適寬敞的空間和精緻的裝潢。</p>
+                <div className='d-flex my-3'>
+                  <button className='card rounded w-100 me-2'>
+                    <div className='text-start pt-3 ps-2'>
+                      <h6>入住</h6>
+                      <p>2023 / 12 / 03</p>
+                    </div>
+                  </button>
+                  <button className='card rounded w-100'>
+                    <div className='text-start pt-3 ps-2'>
+                      <h6>退房</h6>
+                      <p>2023 / 12 / 04</p>
+                    </div>
+                  </button>
+                </div>
+                <div className='row'>
+                  <div className='d-flex justify-content-between align-items-center'>
+                    <p className='fw-bold mt-3'>人數</p>
+
+                    <PeopleCounter />
+                  </div>
+                </div>
+                <div className='py-5'>
+                  <h5 className='text-primary'>NT$ 10,000</h5>
+                </div>
+
+                <Link href='/booking'>
+                  <button type='button' className='btn btn-primary text-white w-100 rounded'>
+                    立即預訂
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>
