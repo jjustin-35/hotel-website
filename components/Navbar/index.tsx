@@ -23,7 +23,7 @@ function NavBar() {
             <Nav.Link className='text-white mx-2 my-2 my-lg-0' href='/user'>
               <i className='bi bi-person-circle'></i> Jessica
             </Nav.Link>
-            <Nav.Link className='text-white mx-2 my-2 my-lg-0' href='/auth'>
+            <Nav.Link className='text-white mx-2 my-2 my-lg-0' href='/room'>
               <Button className='btn btn-primary text-white ms-lg-3 rounded' type='button'>
                 立即訂房
               </Button>

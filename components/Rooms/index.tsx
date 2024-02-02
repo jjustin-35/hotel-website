@@ -43,7 +43,7 @@ function Rooms() {
                   spaceBetween={50} //Slide之間的距離
                   slidesPerView={1} //一頁顯示幾個slide
                   autoplay={{
-                    delay: 80000,
+                    delay: 8000,
                     disableOnInteraction: false,
                   }}
                   loop={true}
@@ -91,7 +91,7 @@ function Rooms() {
                       <div className='card rounded h-100'>
                         <div className='d-flex flex-column justify-content-center align-items-start px-2'>
                           <i className='bi bi-person-fill text-primary mt-3'></i>
-                          <p className='mt-2'>2-4 人</p>
+                          <p className='mt-2'>2-{room.maxPeople} 人</p>
                         </div>
                       </div>
                     </div>
@@ -106,7 +106,7 @@ function Rooms() {
                         <h5 className='text-primary fw-medium'>NT$ {room.price}</h5>
                       </div>
                       <div className='col-2'>
-                        <Link href='/'>
+                        <Link href='/room'>
                           <i className='bi bi-arrow-right text-primary'></i>
                         </Link>
                       </div>
