@@ -11,7 +11,7 @@ const ReserveSuccPage = async ({
 }) => {
   // if (!searchParams?.id) return null;
   const order = await fetchApi(
-    `${config.API_URL}${apiPaths.orders}/${searchParams.id}`,
+    `${config.API_URL}${apiPaths.orders}/${searchParams?.id}`,
     apiMethod.GET
   );
   return (
