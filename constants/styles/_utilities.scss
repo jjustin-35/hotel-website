@@ -8,14 +8,24 @@
 
 h1 {
   font-size: 48px;
+  @media screen and (max-width: 767px) {
+    font-size: 32px;
+  }
 }
 
 h2 {
   font-size: 40px;
 }
 
+h3 {
+  font-size: 32px;
+}
+
 h5 {
   font-size: 24px;
+  @media screen and (max-width: 767px) {
+    font-size: 16px;
+  }
 }
 
 h6 {
@@ -25,6 +35,9 @@ h6 {
 p {
   font-size: 16px;
   line-height: 24px;
+  @media screen and (max-width: 767px) {
+    font-size: 14px;
+  }
 }
 .object-cover {
   object-fit: cover;
