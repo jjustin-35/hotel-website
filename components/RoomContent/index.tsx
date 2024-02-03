@@ -1,17 +1,30 @@
 'use client';
 
-import React from 'react';
+import 'react-datepicker/dist/react-datepicker.css';
+import './style.scss';
+import React, { useState } from 'react';
+import DatePicker from 'react-datepicker';
 import { Image } from 'react-bootstrap';
+import Link from 'next/link';
+import PeopleCounter from '../PeopleCounter';
 import RoomImg1 from '../../public/images/desktop/room2-1.png';
 import RoomImg2 from '../../public/images/desktop/room2-2.png';
 import RoomImg3 from '../../public/images/desktop/room2-3.png';
 import RoomImg4 from '../../public/images/desktop/room2-4.png';
 import RoomImg5 from '../../public/images/desktop/room2-5.png';
-import Link from 'next/link';
-import './style.scss';
-import PeopleCounter from '../PeopleCounter';
 
 const RoomContent = () => {
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+
+  const handleStartDateChange = (date) => {
+    setStartDate(date);
+  };
+
+  const handleEndDateChange = (date) => {
+    setEndDate(date);
+  };
+
   return (
     <main>
       <div className='mx-auto p-5 d-none d-lg-block'>
@@ -268,7 +281,7 @@ const RoomContent = () => {
               </ol>
             </div>
           </div>
-          <div className='col-lg-5'>
+          <div className='col-lg-5 d-none d-lg-block'>
             <div className='card'>
               <div className='card-header bg-transparent'>
                 <h5 className='fw-bold pt-2'>預訂房型</h5>
@@ -279,14 +292,16 @@ const RoomContent = () => {
                 <div className='d-flex my-3'>
                   <button className='card rounded w-100 me-2'>
                     <div className='text-start pt-3 ps-2'>
-                      <h6>入住</h6>
-                      <p>2023 / 12 / 03</p>
+                      <div>
+                        <h6>入住</h6>
+                        <DatePicker selected={startDate} onChange={handleStartDateChange} />
+                      </div>
                     </div>
                   </button>
                   <button className='card rounded w-100'>
                     <div className='text-start pt-3 ps-2'>
                       <h6>退房</h6>
-                      <p>2023 / 12 / 04</p>
+                      <DatePicker selected={endDate} onChange={handleEndDateChange} />
                     </div>
                   </button>
                 </div>
