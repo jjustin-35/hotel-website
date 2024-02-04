@@ -19,9 +19,6 @@ const Auth = ({ children }: { children: React.ReactNode }) => {
       dispatch(getUser());
     }
 
-    if (!token) {
-      router.push("/auth/login");
-    }
   }, [user, token]);
   return <>{children}</>;
 };
