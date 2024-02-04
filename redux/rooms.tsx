@@ -48,13 +48,13 @@ export const getRoomDetail = createAsyncThunk<RoomType, string>(
 
 type InitialState = {
   rooms: RoomType[];
-  roomDetail: RoomType | null;
+  roomDetail: RoomType;
   errorMessage?: string;
 };
 
 const initialState: InitialState = {
   rooms: [],
-  roomDetail: null,
+  roomDetail: {} as RoomType,
   errorMessage: "",
 };
 

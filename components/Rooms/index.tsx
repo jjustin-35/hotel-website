@@ -11,22 +11,22 @@ import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import { RoomType } from '@/constants/types/room';
 
 function Rooms() {
   const roomsCarousel: string[] = ['/images/desktop/room2-1.png', '/images/desktop/room2-2.png'];
 
-  const [roomData, setRoomData] = useState([]);
+  const [roomData, setRoomData] = useState<RoomType[]>([]);
 
   useEffect(() => {
     // Fetch room data from the API
     fetch('https://hotel-service-center.onrender.com/api/v1/rooms/', { method: 'GET' })
       .then((response) => response.json())
       .then((res) => {
-        const rooms = res.result[0];
-        console.log(rooms);
+        const rooms: RoomType[] = res.result[0];
 
         // Update state with the fetched room data
-        setRoomData(res.result);
+        setRoomData(rooms);
       });
   }, []);
 
@@ -51,7 +51,7 @@ function Rooms() {
                   pagination={{ clickable: true }}
                 >
                   {imageUrlList &&
-                    imageUrlList.map((imageUrl, imgIndex) => {
+                    imageUrlList?.map((imageUrl, imgIndex) => {
                       return (
                         <SwiperSlide key={imgIndex} className='position-relative'>
                           <Image

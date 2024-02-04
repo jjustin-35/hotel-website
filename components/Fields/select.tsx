@@ -11,7 +11,7 @@ const Select = ({
 }: {
   control: Control;
   field: FieldType;
-  options: OptionType[];
+  options?: OptionType[];
 }) => {
   const { label } = field;
   return (
@@ -22,9 +22,9 @@ const Select = ({
         name={field.name}
         render={({ field }) => (
           <Form.Select {...field} style={{minWidth: '250px'}}>
-            <option value={null}>請選擇</option>
+            <option value={""}>請選擇</option>
             {isArrayExist(options) &&
-              options.map((option) => (
+              options?.map((option) => (
                 <option key={option.key} value={option.key}>
                   {option.value}
                 </option>

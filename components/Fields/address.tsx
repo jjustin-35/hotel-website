@@ -15,7 +15,7 @@ const AddressFields = ({
   control: Control;
   field: FieldType;
 }) => {
-  const [city, setCity] = useState<string>(null);
+  const [city, setCity] = useState<string>('');
 
   const defaultOption = "請選擇";
   const cities = Object.keys(address);
@@ -40,7 +40,7 @@ const AddressFields = ({
                 defaultValue={defaultOption}
                 onChange={handleCityChange}
               >
-                <option value={null}>{defaultOption}</option>
+                <option value={''}>{defaultOption}</option>
                 {cities.map((city) => (
                   <option key={city} value={city}>
                     {city}
@@ -56,7 +56,7 @@ const AddressFields = ({
             control={control}
             render={({ field }) => (
               <Form.Select {...field} defaultValue={defaultOption}>
-                <option value={null}>{defaultOption}</option>
+                <option value={''}>{defaultOption}</option>
                 {districts.map((district) => (
                   <option key={district} value={district}>
                     {district}

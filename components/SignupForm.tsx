@@ -18,7 +18,7 @@ const SignupForm: FC = () => {
   const step1 = useRef<HTMLHeadingElement>(null);
   const stepCompleted = useRef<HTMLElement>(null);
   const stepperItem2 = useRef<HTMLLIElement>(null);
-  const [addressData, setAddressData] = useState([]);
+  const [addressData, setAddressData] = useState<any[]>([]);
   const [chosenCity, setChosenCity] = useState("");
   const [zipCode, setZipCode] = useState("");
   const [email, setEmail] = useState("");
@@ -227,6 +227,7 @@ const SignupForm: FC = () => {
                 required: "姓名為必填",
               }}
               placeholder="請輸入您的名字"
+              action={""}
             ></Input>
           </div>
           <div className="mb-3">
@@ -248,6 +249,7 @@ const SignupForm: FC = () => {
                 },
               }}
               placeholder="請輸入手機號碼"
+              action={""}
             ></Input>
           </div>
           <div className="mb-3">
@@ -261,6 +263,7 @@ const SignupForm: FC = () => {
                 required: "生日為必填",
               }}
               placeholder=""
+              action={""}
             ></Input>
           </div>
           <div className="mb-3">
@@ -317,6 +320,7 @@ const SignupForm: FC = () => {
                 required: "請輸入詳細地址",
               }}
               placeholder="請輸入詳細地址"
+              action={""}
             ></Input>
           </div>
           <div className="mb-5">

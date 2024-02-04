@@ -55,12 +55,12 @@ export const updateUser = createAsyncThunk(
 );
 
 type InitialState = {
-  user: UserType | null;
+  user: UserType;
   errorMessage?: string;
 };
 
 const initialState: InitialState = {
-  user: null,
+  user: {} as UserType,
   errorMessage: "",
 };
 

@@ -14,7 +14,7 @@ interface InfoItemProps {
     key: string;
   }[];
   name: string;
-  info: string | number | string[];
+  info?: string | number | string[];
   infoOptions?: RoomType[];
   onEdit: (data: Record<string, any>) => void;
 }
@@ -75,7 +75,7 @@ const InfoItem = ({
     },
   });
 
-  const options: OptionType[] = infoOptions?.map((item) => ({
+  const options: OptionType[] | undefined = infoOptions?.map((item) => ({
     key: item._id,
     value: item.name,
   }));

@@ -131,7 +131,7 @@ const demoReserveOrder: ReserveOrderType = {
 
 const initialState: InitialState = {
   orders: [],
-  orderDetail: null,
+  orderDetail: {} as OrderType,
   reserveOrder: demoReserveOrder,
   errorMessage: "",
 };

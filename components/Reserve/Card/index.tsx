@@ -7,7 +7,7 @@ const ReserveCard = ({
   roomData,
   reserveData,
 }: {
-  roomData: RoomType;
+  roomData?: RoomType;
   reserveData: ReserveOrderType;
 }) => {
   const startDate = new Date(reserveData.checkInDate);

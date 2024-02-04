@@ -5,7 +5,7 @@ import CheckList from "@/components/CheckList";
 import data from "./data";
 import "../style.scss";
 
-const RoomInfo = ({ roomData }: { roomData: RoomType }) => {
+const RoomInfo = ({ roomData }: { roomData?: RoomType }) => {
   if (!roomData) return null;
 
   const { layoutInfo, facilityInfo, amenityInfo } = roomData;
