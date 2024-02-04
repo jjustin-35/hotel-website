@@ -1,16 +1,34 @@
-import React from 'react';
+'use client';
+
+import MobileBanner from './BannerMobile';
+import 'react-datepicker/dist/react-datepicker.css';
+import './style.scss';
+import React, { useState } from 'react';
+import DatePicker from 'react-datepicker';
 import { Image } from 'react-bootstrap';
+import Link from 'next/link';
+import PeopleCounter from '../PeopleCounter';
 import RoomImg1 from '../../public/images/desktop/room2-1.png';
 import RoomImg2 from '../../public/images/desktop/room2-2.png';
 import RoomImg3 from '../../public/images/desktop/room2-3.png';
 import RoomImg4 from '../../public/images/desktop/room2-4.png';
 import RoomImg5 from '../../public/images/desktop/room2-5.png';
-import Link from 'next/link';
-import './style.scss';
 
 const RoomContent = () => {
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+
+  const handleStartDateChange = (date) => {
+    setStartDate(date);
+  };
+
+  const handleEndDateChange = (date) => {
+    setEndDate(date);
+  };
+
   return (
     <main>
+      {/* desktop gallery */}
       <div className='mx-auto p-5 d-none d-lg-block'>
         <div className='position-relative'>
           <div className='row d-lg-flex justify-content-center'>
@@ -48,7 +66,7 @@ const RoomContent = () => {
               </div>
             </div>
           </div>
-          <Link href='/'>
+          <Link href='https://unsplash.com/photos/white-bed-linen-with-throw-pillows-Yrxr3bsPdS0'>
             <button
               className='position-absolute btn btn-light rounded px-4 text-primary'
               style={{ bottom: '1rem', right: '1rem' }}
@@ -59,7 +77,13 @@ const RoomContent = () => {
           </Link>
         </div>
       </div>
-      <div className='container' style={{ marginTop: '60px' }}>
+
+      {/* mobile gallery */}
+      <div className='d-lg-none d-block'>
+        <MobileBanner />
+      </div>
+
+      <div className='container d-none d-lg-block' style={{ marginTop: '60px' }}>
         <div className='row'>
           <div className='col-lg-7'>
             <div className='title'>
@@ -71,7 +95,7 @@ const RoomContent = () => {
                 <span className='text-primary fw-bold me-2'>|</span>房型基本資訊
               </h5>
               <div className='row mt-3'>
-                <div className='col-lg-3 col-4'>
+                <div className='col-lg-3 col-3'>
                   <div className='card rounded h-100'>
                     <div className='d-flex flex-column justify-content-center align-items-start px-2'>
                       <i className='bi bi-arrows-angle-expand text-primary mt-3'></i>
@@ -79,7 +103,7 @@ const RoomContent = () => {
                     </div>
                   </div>
                 </div>
-                <div className='col-lg-3 col-4'>
+                <div className='col-lg-3 col-3'>
                   <div className='card rounded h-100'>
                     <div className='d-flex flex-column justify-content-center align-items-start px-1'>
                       <i className='bi bi-arrows-angle-expand text-primary mt-3'></i>
@@ -87,7 +111,7 @@ const RoomContent = () => {
                     </div>
                   </div>
                 </div>
-                <div className='col-lg-3 col-4'>
+                <div className='col-lg-3 col-3'>
                   <div className='card rounded h-100'>
                     <div className='d-flex flex-column justify-content-center align-items-start px-2'>
                       <i className='bi bi-person-fill text-primary mt-3'></i>
@@ -265,7 +289,49 @@ const RoomContent = () => {
               </ol>
             </div>
           </div>
-          <div className='col-lg-4'></div>
+          <div className='col-lg-5 d-none d-lg-block'>
+            <div className='card'>
+              <div className='card-header bg-transparent'>
+                <h5 className='fw-bold pt-2'>預訂房型</h5>
+              </div>
+              <div className='card-body text-start'>
+                <h2 className='card-title'>尊爵雙人房</h2>
+                <p className='card-text'>享受高級的住宿體驗，尊爵雙人房提供給您舒適寬敞的空間和精緻的裝潢。</p>
+                <div className='d-flex my-3'>
+                  <button className='card rounded w-100 me-2'>
+                    <div className='text-start pt-3 ps-2'>
+                      <div>
+                        <h6>入住</h6>
+                        <DatePicker selected={startDate} onChange={handleStartDateChange} />
+                      </div>
+                    </div>
+                  </button>
+                  <button className='card rounded w-100'>
+                    <div className='text-start pt-3 ps-2'>
+                      <h6>退房</h6>
+                      <DatePicker selected={endDate} onChange={handleEndDateChange} />
+                    </div>
+                  </button>
+                </div>
+                <div className='row'>
+                  <div className='d-flex justify-content-between align-items-center'>
+                    <p className='fw-bold mt-3'>人數</p>
+
+                    <PeopleCounter />
+                  </div>
+                </div>
+                <div className='py-5'>
+                  <h5 className='text-primary'>NT$ 10,000</h5>
+                </div>
+
+                <Link href='/reserve'>
+                  <button type='button' className='btn btn-primary text-white w-100 rounded'>
+                    立即預訂
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>

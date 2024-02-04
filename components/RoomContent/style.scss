@@ -14,3 +14,10 @@ ol li {
 ol {
   padding-left: 0.8rem;
 }
+
+.react-datepicker__input-container input,
+.react-datepicker__input-container input:focus,
+.react-datepicker__input-container input:hover {
+  border: transparent;
+  width: 80%;
+}

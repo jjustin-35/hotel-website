@@ -2,6 +2,7 @@
 @import './variables';
 @import '../node_modules/bootstrap/scss/bootstrap';
 @import './utilities';
+@import 'react-datepicker/dist/react-datepicker.css';
 
 $theme-colors: (
   'primary': #bf9d7d,
