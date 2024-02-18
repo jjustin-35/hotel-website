@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/config/configureStore";
+import { useSelector } from "react-redux";
+import { RootState } from "@/config/configureStore";
 import { UpdateUserType } from "@/constants/types/user";
 import { updateUser } from "@/redux/user";
+import useAppDispatch from "@/helpers/useAppDispatch";
 
 import Tab from "../Tab";
 import Account from "./Account";
@@ -18,7 +19,7 @@ const User = () => {
   const [activeTab, setActiveTab] = useState<string>(tabs[0].key);
   const { user } = useSelector((state: RootState) => state.user);
   const { orders, orderDetail } = useSelector((state: RootState) => state.orders);
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);

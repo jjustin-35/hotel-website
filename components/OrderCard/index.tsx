@@ -1,15 +1,13 @@
 import { Button, Card } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import useAppDispatch from "@/helpers/useAppDispatch";
 import { OrderType } from "@/constants/types/order";
-import { AppDispatch } from "@/config/configureStore";
-
 import { deleteOrder } from "@/redux/orders";
 import { getInfoTexts } from "@/helpers/getInfoTexts";
 import CheckList from "../CheckList";
 import "./style.scss";
 
 const OrderCard = ({ order, isCancelable }: { order: OrderType; isCancelable?: boolean }) => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
   const roomData = order?.roomId;
   const startDate = new Date(order.checkInDate);

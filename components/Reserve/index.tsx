@@ -2,21 +2,22 @@
 
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Col, Container, Row } from "react-bootstrap";
 import { useEffect } from "react";
+import useAppDispatch from "@/helpers/useAppDispatch";
 import Info from "./Info";
 import Form from "./Form";
 import RoomInfo from "./RoomInfo";
 import ReserveCard from "./Card";
 import { getRoomDetail } from "@/redux/rooms";
-import { AppDispatch, RootState } from "@/config/configureStore";
+import { RootState } from "@/config/configureStore";
 import { orderActions } from "@/redux/orders";
 
 const Reserve = () => {
   const { reserveOrder } = useSelector((state: RootState) => state.orders);
   const { roomDetail } = useSelector((state: RootState) => state.rooms);
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const router = useRouter();
 
   useEffect(() => {

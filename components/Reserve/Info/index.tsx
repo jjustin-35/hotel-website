@@ -1,8 +1,9 @@
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import type { ReserveOrderType } from "@/constants/types/order";
-import { AppDispatch, RootState } from "@/config/configureStore";
+import { RootState } from "@/config/configureStore";
 import { getRooms } from "@/redux/rooms";
+import useAppDispatch from "@/helpers/useAppDispatch";
 
 import InfoItem from "./item";
 
@@ -20,7 +21,7 @@ const ReserveInfo = ({
 }) => {
   const { roomName, checkInDate, checkOutDate, peopleNum } = info || {};
   const { rooms } = useSelector((state: RootState) => state.rooms);
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (!isArrayExist(rooms)) {
